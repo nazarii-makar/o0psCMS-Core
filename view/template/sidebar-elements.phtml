@@ -1,0 +1,26 @@
+<ul class="sidebar-elements">
+    <?php /** @var Zend\Navigation\Page\AbstractPage $page */ ?>
+    <?php foreach ($this->container as $page): ?>
+        <?php if ($this->isAllowed($page->get('resource'), $page->get('privilege'))): ?>
+            <li<?php printf(' class="%s %s"', $page->hasPages() ? 'parent' : '', $page->isActive() ? 'active' : '') ?>>
+                <a href="<?= $page->getHref() ?>">
+                    <i class="<?= $page->get('icon') ?>"></i>
+                    <span><?= $this->translate($page->get('label')) ?></span>
+                </a>
+                <?php if ($page->hasPages()): ?>
+                    <ul class="sub-menu">
+                        <?php foreach ($page->getPages() as $child): ?>
+                            <?php /** @var Zend\Navigation\Page\AbstractPage $child */ ?>
+                            <?php if ($this->isAllowed($child->get('resource'), $child->get('privilege'))): ?>
+                                <li<?php printf(' class="%s %s"', $child->hasPages() ? 'parent' : '', $child->isActive() ? 'active' : '') ?>>
+                                    <a href="<?= $child->getHref() ?>"><?= $this->translate($child->get('label')) ?></a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</ul>
+

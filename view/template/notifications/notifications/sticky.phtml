@@ -1,0 +1,20 @@
+<div id="gritter-notice-wrapper" class="gritter-main-wrapper flash-message-display">
+    <?php
+    $flash = $this->flashMessenger();
+    $flash->setMessageOpenFormat('<div role="alert"%s>
+        <div class="gritter-item">
+            <div class="gritter-img-container"><img src="' . $this->basePath('assets/img/slack_logo.png') . '" class="gritter-image"></div>
+            <div class="gritter-content gritter-with-image">
+                <a class="gritter-close" href="#" data-dismiss="alert" aria-hidden="true">Close Notification</a>
+                <span class="gritter-title">' . $this->translate('Message') . '</span>
+                <p>')
+        ->setMessageSeparatorString('</p><p>')
+        ->setMessageCloseString('</p></div></div></div>');
+
+    echo $flash->render('error', ['alert', 'gritter-item-wrapper', 'clean']);
+    echo $flash->render('warning', ['alert', 'gritter-item-wrapper', 'clean']);
+    echo $flash->render('info', ['alert', 'gritter-item-wrapper', 'clean']);
+    echo $flash->render('default', ['alert', 'gritter-item-wrapper', 'clean']);
+    echo $flash->render('success', ['alert', 'gritter-item-wrapper', 'clean']);
+    ?>
+</div>

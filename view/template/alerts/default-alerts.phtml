@@ -1,0 +1,48 @@
+<?php
+$flash = $this->flashMessenger();
+
+
+echo $flash->setMessageOpenFormat('<div role="alert"%s>
+        <span class="s7-check"></span>
+            <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span
+                    aria-hidden="true" class="s7-close"></span></button>
+                    <span>')
+    ->setMessageSeparatorString('</span><span>')
+    ->setMessageCloseString('</span></div>')
+    ->render('default', ['alert', 'alert-primary', 'alert-dismissible']);
+
+echo $flash->setMessageOpenFormat('<div role="alert"%s>
+        <span class="s7-check"></span>
+            <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span
+                    aria-hidden="true" class="s7-close"></span></button>
+                    <span>')
+    ->setMessageSeparatorString('</span><span>')
+    ->setMessageCloseString('</span></div>')
+    ->render('success', ['alert', 'alert-success', 'alert-dismissible']);
+
+echo $flash->setMessageOpenFormat('<div role="alert"%s>
+        <span class="s7-info"></span>
+            <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span
+                    aria-hidden="true" class="s7-close"></span></button>
+                    <span>')
+    ->setMessageSeparatorString('</span><span>')
+    ->setMessageCloseString('</span></div>')
+    ->render('info', ['alert', 'alert-info', 'alert-dismissible']);
+
+echo $flash->setMessageOpenFormat('<div role="alert"%s>
+        <span class="s7-attention"></span>
+            <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span
+                    aria-hidden="true" class="s7-close"></span></button>
+                    <span>')
+    ->setMessageSeparatorString('</span><span>')
+    ->setMessageCloseString('</span></div>')
+    ->render('warning', ['alert', 'alert-warning', 'alert-dismissible']);
+
+echo $flash->setMessageOpenFormat('<div role="alert"%s>
+        <span class="s7-close-circle"></span>
+            <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span
+                    aria-hidden="true" class="s7-close"></span></button>
+                    <span>')
+    ->setMessageSeparatorString('</span><span>')
+    ->setMessageCloseString('</span></div>')
+    ->render('error', ['alert', 'alert-danger', 'alert-dismissible']);

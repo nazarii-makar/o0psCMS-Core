@@ -1,0 +1,65 @@
+<?= $this->doctype() ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <?= $this->headTitle('o0psCMS')->setSeparator(' | ')->setAutoEscape(false) ?>
+
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('assets/img/favicon.ico')])
+        ->prependStylesheet($this->basePath('assets/css/style.css'))
+        ->prependStylesheet($this->basePath('assets/lib/stroke-7/style.css'))
+    ?>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="am-splash-screen">
+<div class="am-wrapper am-error am-error-404">
+    <div class="am-content">
+        <div class="main-content">
+            <div class="error-container">
+                <div class="error-image"></div>
+                <div class="error-number">500</div>
+                <p class="error-description"><?= $this->translate($this->reasonMessage) ?></p>
+                <?php if (isset($this->exception)) : ?>
+                    <h2 style="color: #a2a6a6;">Additional information:</h2>
+                    <dl style="text-align: left; width: 80%; margin: auto;color: #cccccc;">
+                        <dt>File:</dt>
+                        <dd>
+                            <pre><?= $this->exception->getFile() ?>:<?= $this->exception->getLine() ?></pre>
+                        </dd>
+                        <dt>Message:</dt>
+                        <dd>
+                            <pre><?= $this->escapeHtml($this->exception->getMessage()) ?></pre>
+                        </dd>
+                        <dt>Stack trace:</dt>
+                        <dd>
+                            <pre><?= $this->escapeHtml($this->exception->getTraceAsString()) ?></pre>
+                        </dd>
+                    </dl>
+                <?php endif; ?>
+                <div class="error-goback-text"><?= $this->translate('Would you like to go') ?> <a
+                        href="<?= ($this->user()) ? $this->url('o0ps-cms') : $this->url('home') ?>"><?= $this->translate('home') ?></a>?
+                </div>
+                <div class="footer">&copy; <?= date('Y') ?> <a href="#">o0psCMS</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?= $this->inlineScript()
+    ->appendFile($this->basePath('assets/lib/jquery/jquery.min.js'))
+    ->appendFile($this->basePath('assets/lib/bootstrap/dist/js/bootstrap.min.js'))
+?>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<?php
+
+$form = $this->form;
+
+$form->setAttributes([
+    'class' => 'form-horizontal',
+    'data-parsley-validate' => '',
+    'novalidate' => ''
+]);
+
+$form->get('usernameOrEmail')->setAttributes([
+    'id' => 'username',
+    'data-parsley-trigger' => 'change',
+    'data-parsley-errors-messages-disabled' => 'true',
+    'data-parsley-class-handler' => '#username-handler',
+    'autocomplete' => 'off',
+    'class' => 'form-control',
+    'placeholder' => $this->translate('Username or Email')
+]);
+
+$form->get('password')->setAttributes([
+    'id' => 'password',
+    'data-parsley-trigger' => 'change',
+    'data-parsley-errors-messages-disabled' => 'true',
+    'data-parsley-class-handler' => '#password-handler',
+    'class' => 'form-control',
+    'placeholder' => $this->translate('Password')
+]);
+
+$form->get('rememberme')->setAttributes([
+    'id' => 'remember'
+]);
+
+$form->get('submit')->setAttributes([
+    'id' => 'send_btn',
+    'data-dismiss' => 'modal',
+    'class' => 'btn btn-primary btn-lg',
+    'value' => $this->translate('Log In')
+]);
+
+$form->prepare();
+?>
+<div class="am-wrapper am-login">
+    <div class="am-content">
+        <div class="main-content">
+            <div class="login-container">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><img src="<?= $this->basePath('assets/img/logo-full-retina.png') ?>"
+                                                    alt="logo" width="150px"
+                                                    height="39px"
+                                                    class="logo-img"><span><?= $this->translate('Please enter your user information.'); ?></span>
+                    </div>
+                    <div class="panel-body">
+                        <?= $this->partial('template/alerts/icon-alerts') ?>
+                        <?= $this->form()->openTag($form); ?>
+                        <div class="login-form">
+                            <div class="form-group">
+                                <div id="username-handler" class="input-group"><span class="input-group-addon"><i
+                                            class="icon s7-user"></i></span>
+                                    <?php
+                                    $element = $form->get('usernameOrEmail');
+                                    echo $this->formElement($element);
+                                    ?>
+                                </div>
+                                <?= $this->formElementErrors($element); ?>
+                            </div>
+                            <div class="form-group">
+                                <div id="password-handler" class="input-group"><span class="input-group-addon"><i
+                                            class="icon s7-lock"></i></span>
+                                    <?php
+                                    $element = $form->get('password');
+                                    echo $this->formElement($element);
+                                    ?>
+                                </div>
+                                <?= $this->formElementErrors($element); ?>
+                            </div>
+                        </div>
+                        <div class="form-group login-submit">
+                            <?= $this->formRow($form->get('submit')) ?>
+                        </div>
+                        <div class="form-group footer row">
+                            <div class="col-xs-6"><a
+                                    href="<?= $this->url('o0ps-cms/forgotPassword') ?>"><?= $this->translate('Forgot Password?'); ?></a>
+                            </div>
+
+                            <div class="col-xs-6 remember">
+                                <label for="remember"><?= $this->translate('Remember Me'); ?></label>
+                                <div class="am-checkbox">
+                                    <?php
+                                    $element = $form->get('rememberme');
+                                    echo $this->formElement($element);
+                                    ?>
+                                    <label for="remember"></label>
+                                </div>
+                                <?= $this->formElementErrors($element); ?>
+                            </div>
+                        </div>
+                        <?php
+                        echo $this->formRow($form->get('csrf'));
+                        echo $this->form()->closeTag();
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

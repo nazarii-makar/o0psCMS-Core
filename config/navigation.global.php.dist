@@ -1,0 +1,64 @@
+<?php
+
+return [
+     'navigation' => [
+         'default' => [
+             [
+                 'label' => 'Dashboard',
+                 'route' => 'o0ps-cms',
+				 'resource' => 'o0psCore\Controller\AdminController',
+				 'privilege' => 'index',
+             ],
+			 [
+				 'label' => 'User',
+				 'route' => 'user-index',
+				 'controller' => 'Index',
+				 'action'     => 'index',
+				 'resource'	  => 'o0psUser\Controller\Index',
+				 'privilege'  => 'index',
+			 ],
+			 [
+				 'label' => 'Admin',
+				 'route' => 'user-admin',
+				 'controller' => 'Admin',
+				 'action'     => 'index',
+				 'resource'	  => 'o0psUser\Controller\Admin',
+				 'privilege'  => 'index',
+			 ],
+			 [
+                 'label' => 'Login',
+                 'route' => 'user-index',
+				 'controller' => 'Index',
+				 'action'     => 'login',
+				 'resource'	  => 'o0psUser\Controller\Index',
+				 'privilege'  => 'login',
+             ],
+             [
+                 'label' => 'Registration',
+                 'route' => 'user-register',
+				 'controller' => 'Registration',
+				 'action'     => 'index',
+				 'resource'	  => 'o0psUser\Controller\Registration',
+				 'privilege'  => 'index',
+				 'title'	  => 'Registration Form'
+             ],
+             [
+                 'label' => 'Edit profile',
+                 'route' => 'user-register',
+				 'controller' => 'Registration',
+				 'action'     => 'editProfile',
+				 'resource'	  => 'o0psUser\Controller\Registration',
+				 'privilege'  => 'editProfile',
+             ],
+            [
+                 'label' => 'Logout',
+                 'route' => 'user-index',
+				 'controller' => 'Index',
+				 'action'     => 'logout',
+				 'resource'	  => 'o0psUser\Controller\Index',
+				 'privilege'  => 'logout'
+             ],
+			
+		 ],
+	 ],
+];
