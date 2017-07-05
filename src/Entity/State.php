@@ -27,7 +27,7 @@ class State
      * @ORM\Column(name="state", type="string", length=50, nullable=false, unique=true)
      */
     protected $state;
-    
+
     /**
      * Get id
      *
@@ -41,7 +41,8 @@ class State
     /**
      * Set state
      *
-     * @param  string   $state
+     * @param  string $state
+     *
      * @return Language
      */
     public function setState($state)

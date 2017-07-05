@@ -2,6 +2,10 @@
 
 namespace o0psCore\Mapper;
 
+/**
+ * Class Question
+ * @package o0psCore\Mapper
+ */
 class Question
 {
     /**
@@ -19,12 +23,17 @@ class Question
      */
     protected $translatorHelper;
 
+    /**
+     * @param $id
+     *
+     * @return bool|null|object
+     */
     public function findById($id)
     {
         $entityManager = $this->getEntityManager();
         try {
             $question = $entityManager->getRepository('o0psCore\Entity\Question')
-                ->find($id);
+                                      ->find($id);
         } catch (\Exception $e) {
             return false;
         }
@@ -34,11 +43,13 @@ class Question
 
     /**
      * @param $options
+     *
      * @return $this
      */
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -54,11 +65,13 @@ class Question
 
     /**
      * @param $entityManager
+     *
      * @return $this
      */
     public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
+
         return $this;
 
     }
@@ -75,11 +88,13 @@ class Question
 
     /**
      * @param $translatorHelper
+     *
      * @return $this
      */
     public function setTranslatorHelper($translatorHelper)
     {
         $this->translatorHelper = $translatorHelper;
+
         return $this;
 
     }

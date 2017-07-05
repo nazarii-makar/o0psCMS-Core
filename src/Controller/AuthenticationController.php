@@ -11,6 +11,10 @@ use Zend\Session\SessionManager;
 use Zend\View\Exception\RuntimeException;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class AuthenticationController
+ * @package o0psCore\Controller
+ */
 class AuthenticationController extends AbstractActionController
 {
     /**
@@ -93,21 +97,22 @@ class AuthenticationController extends AbstractActionController
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $usernameOrEmail = $this->params()->fromPost('usernameOrEmail');
-                $userMapper = $this->getUserMapper();
-                $user = $userMapper->findByUsernameOrEmail($usernameOrEmail);
+                $userMapper      = $this->getUserMapper();
+                $user            = $userMapper->findByUsernameOrEmail($usernameOrEmail);
                 if (!$user) {
                     $flashMessages = $this->getTranslatorHelper()->translate('The username or email is not valid!');
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_ERROR)
-                        ->addMessage($flashMessages);
+                         ->setNamespace(FlashMessenger::NAMESPACE_ERROR)
+                         ->addMessage($flashMessages);
 
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
                 }
                 if ($user->getState()->getId() < 2) {
-                    $flashMessages = $this->getTranslatorHelper()->translate('Your username is disabled. Please contact an administrator.');
+                    $flashMessages = $this->getTranslatorHelper()
+                                          ->translate('Your username is disabled. Please contact an administrator.');
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
-                        ->addMessage($flashMessages);
+                         ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
+                         ->addMessage($flashMessages);
 
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
                 }
@@ -115,11 +120,12 @@ class AuthenticationController extends AbstractActionController
                 $authResult = $this->getUserManager()->authentication($user->getUsername(),
                     $this->params()->fromPost('password'),
                     $this->params()->fromPost('rememberme'));
-                if (is_bool($authResult) && $authResult)
+                if (is_bool($authResult) && $authResult) {
                     return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+                }
 
                 $this->flashMessenger()
-                    ->setNamespace(FlashMessenger::NAMESPACE_ERROR);
+                     ->setNamespace(FlashMessenger::NAMESPACE_ERROR);
                 foreach ($authResult->getMessages() as $message) {
                     $flashMessages = $this->getTranslatorHelper()->translate($message);
                     $this->flashMessenger()->addMessage($flashMessages);
@@ -132,6 +138,7 @@ class AuthenticationController extends AbstractActionController
             'form' => $form,
         ]);
         $viewModel->setTemplate('o0ps-core/authentication/login');
+
         return $viewModel;
     }
 
@@ -145,8 +152,8 @@ class AuthenticationController extends AbstractActionController
         }
         if (!$this->getOptions()->isEnableRegistration()) {
             $this->flashMessenger()
-                ->setNamespace(FlashMessenger::NAMESPACE_INFO)
-                ->addMessage($this->getTranslatorHelper()->translate('Registration is disabled'));
+                 ->setNamespace(FlashMessenger::NAMESPACE_INFO)
+                 ->addMessage($this->getTranslatorHelper()->translate('Registration is disabled'));
 
             return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
         }
@@ -161,53 +168,60 @@ class AuthenticationController extends AbstractActionController
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $userManager = $this->getUserManager();
-                $user = $userManager->register($user);
+                $user        = $userManager->register($user);
                 if ($this->getOptions()->isConfirmEmailRegistration()) {
-                    $fullLink = $this->getBaseUrl() . $this->url()->fromRoute(RouteCollector::ROUTE_CONFIRMEMAIL, ['id' => $user->getRegistrationToken()]);
+                    $fullLink = $this->getBaseUrl() . $this->url()
+                                                           ->fromRoute(RouteCollector::ROUTE_CONFIRMEMAIL, ['id' => $user->getRegistrationToken()]);
                     if (!$this->getMailHelper()->sendEmail(
                         $user->getEmail(),
                         $this->getTranslatorHelper()->translate('Please, confirm your registration!'),
-                        sprintf($this->getTranslatorHelper()->translate('Please, click the link to confirm your registration => <a href="%s">Confirm</a>'), $fullLink)
+                        sprintf($this->getTranslatorHelper()
+                                     ->translate('Please, click the link to confirm your registration => <a href="%s">Confirm</a>'), $fullLink)
                     )
                     ) {
-                        $flashMessages = sprintf($this->getTranslatorHelper()->translate('Something went wrong when trying to send activation email! Please, try again later.'));
+                        $flashMessages = sprintf($this->getTranslatorHelper()
+                                                      ->translate('Something went wrong when trying to send activation email! Please, try again later.'));
                         $this->flashMessenger()
-                            ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
-                            ->addMessage($flashMessages);
+                             ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
+                             ->addMessage($flashMessages);
 
                         return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
                     };
-                    $flashMessages = sprintf($this->getTranslatorHelper()->translate('An email has been sent to %s. Please, check your inbox and confirm your registration!'), $user->getEmail());
+                    $flashMessages = sprintf($this->getTranslatorHelper()
+                                                  ->translate('An email has been sent to %s. Please, check your inbox and confirm your registration!'), $user->getEmail());
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_DEFAULT)
-                        ->addMessage($flashMessages);
+                         ->setNamespace(FlashMessenger::NAMESPACE_DEFAULT)
+                         ->addMessage($flashMessages);
 
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
                 }
                 if (!$this->getOptions()->isLoginAfterRegistration()) {
-                    $flashMessages = $this->getTranslatorHelper()->translate('Thank you! Your registration has been confirmed.');
+                    $flashMessages =
+                        $this->getTranslatorHelper()->translate('Thank you! Your registration has been confirmed.');
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
-                        ->addMessage($flashMessages);
+                         ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
+                         ->addMessage($flashMessages);
 
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
                 }
                 if ($user->getState()->getId() < 2) {
-                    $flashMessages = $this->getTranslatorHelper()->translate('Your username is disabled. Please contact an administrator.');
+                    $flashMessages = $this->getTranslatorHelper()
+                                          ->translate('Your username is disabled. Please contact an administrator.');
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
-                        ->addMessage($flashMessages);
+                         ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
+                         ->addMessage($flashMessages);
 
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
                 }
                 $authResult = $this->getUserManager()->authentication($user->getUsername(),
                     $this->params()->fromPost('password'),
                     $this->params()->fromPost('rememberme'));
-                if (is_bool($authResult) && $authResult)
+                if (is_bool($authResult) && $authResult) {
                     return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
+                }
 
                 $this->flashMessenger()
-                    ->setNamespace(FlashMessenger::NAMESPACE_ERROR);
+                     ->setNamespace(FlashMessenger::NAMESPACE_ERROR);
                 foreach ($authResult->getMessages() as $message) {
                     $flashMessages = $this->getTranslatorHelper()->translate($message);
                     $this->flashMessenger()->addMessage($flashMessages);
@@ -222,6 +236,7 @@ class AuthenticationController extends AbstractActionController
             'form' => $form,
         ]);
         $viewModel->setTemplate('o0ps-core/authentication/singup');
+
         return $viewModel;
     }
 
@@ -243,45 +258,50 @@ class AuthenticationController extends AbstractActionController
             $form->setValidationGroup('email', 'csrf');
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
-                $email = $this->params()->fromPost('email');
+                $email      = $this->params()->fromPost('email');
                 $userMapper = $this->getUserMapper();
-                $user = $userMapper->findByEmail($email);
+                $user       = $userMapper->findByEmail($email);
                 if (!$user) {
                     $flashMessages = sprintf($this->getTranslatorHelper()->translate('The email is not valid!'));
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_ERROR)
-                        ->addMessage($flashMessages);
+                         ->setNamespace(FlashMessenger::NAMESPACE_ERROR)
+                         ->addMessage($flashMessages);
 
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_FORGOTPASSWORD);
                 }
                 $userManager = $this->getUserManager();
                 /** @var \o0psCore\Entity\User $user */
-                $user = $userManager->forgotPassword($user);
-                $fullLink = $this->getBaseUrl() . $this->url()->fromRoute(RouteCollector::ROUTE_CONFIRMEMAILCHANGEPASSWORD, ['id' => $user->getRegistrationToken()]);
+                $user     = $userManager->forgotPassword($user);
+                $fullLink = $this->getBaseUrl() . $this->url()
+                                                       ->fromRoute(RouteCollector::ROUTE_CONFIRMEMAILCHANGEPASSWORD, ['id' => $user->getRegistrationToken()]);
                 if (!$this->getMailHelper()->sendEmail(
                     $user->getEmail(),
                     $this->getTranslatorHelper()->translate('Please, confirm your request to change password!'),
-                    sprintf($this->getTranslatorHelper()->translate('Hi, %s. Please, follow <a href="%s">this link</a> to confirm your request to change password.'), $user->getUsername(), $fullLink)
+                    sprintf($this->getTranslatorHelper()
+                                 ->translate('Hi, %s. Please, follow <a href="%s">this link</a> to confirm your request to change password.'), $user->getUsername(), $fullLink)
                 )
                 ) {
-                    $flashMessages = sprintf($this->getTranslatorHelper()->translate('Something went wrong when trying to send activation email! Please, try again later.'), $user->getEmail());
+                    $flashMessages = sprintf($this->getTranslatorHelper()
+                                                  ->translate('Something went wrong when trying to send activation email! Please, try again later.'), $user->getEmail());
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
-                        ->addMessage($flashMessages);
+                         ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
+                         ->addMessage($flashMessages);
 
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_FORGOTPASSWORD);
                 }
 
-                $flashMessages = sprintf($this->getTranslatorHelper()->translate('An email has been sent to %s. Please, check your inbox and confirm your request to change password!'), $user->getEmail());
+                $flashMessages = sprintf($this->getTranslatorHelper()
+                                              ->translate('An email has been sent to %s. Please, check your inbox and confirm your request to change password!'), $user->getEmail());
                 $this->flashMessenger()
-                    ->setNamespace(FlashMessenger::NAMESPACE_DEFAULT)
-                    ->addMessage($flashMessages);
+                     ->setNamespace(FlashMessenger::NAMESPACE_DEFAULT)
+                     ->addMessage($flashMessages);
 
                 return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
             }
         }
         $viewModel = new ViewModel(['form' => $form]);
         $viewModel->setTemplate('o0ps-core/authentication/forgot-password');
+
         return $viewModel;
     }
 
@@ -309,16 +329,17 @@ class AuthenticationController extends AbstractActionController
         $token = $this->params()->fromRoute('id');
         if (!empty($token)) {
             $userMapper = $this->getUserMapper();
-            $user = $userMapper->findByRegistrationToken($token);
+            $user       = $userMapper->findByRegistrationToken($token);
             if ($user) {
                 $userManager = $this->getUserManager();
                 /** @var \o0psCore\Entity\User $user */
                 $userManager->confirmEmail($user);
 
-                $flashMessages = $this->getTranslatorHelper()->translate('Thank you! Your registration has been confirmed.');
+                $flashMessages =
+                    $this->getTranslatorHelper()->translate('Thank you! Your registration has been confirmed.');
                 $this->flashMessenger()
-                    ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
-                    ->addMessage($flashMessages);
+                     ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
+                     ->addMessage($flashMessages);
             }
         }
 
@@ -333,31 +354,35 @@ class AuthenticationController extends AbstractActionController
         $token = $this->params()->fromRoute('id');
         if (!empty($token)) {
             $userMapper = $this->getUserMapper();
-            $user = $userMapper->findByRegistrationToken($token);
+            $user       = $userMapper->findByRegistrationToken($token);
             if ($user) {
-                $userManager = $this->getUserManager();
+                $userManager    = $this->getUserManager();
                 $userCollection = $userManager->confirmEmailChangePassword($user);
                 /** @var \o0psCore\Entity\User $user */
-                $user = $userCollection['user'];
+                $user     = $userCollection['user'];
                 $password = $userCollection['password'];
-                $email = $user->getEmail();
+                $email    = $user->getEmail();
                 $fullLink = $this->getBaseUrl() . $this->url()->fromRoute(RouteCollector::ROUTE_LOGIN);
                 if (!$this->getMailHelper()->sendEmail(
                     $user->getEmail(),
                     'Your password has been changed!',
-                    sprintf($this->getTranslatorHelper()->translate('Hello again %s. Your new password is: %s. Please, follow this link %s to log in with your new password.'), $user->getUsername(), $password, $fullLink)
+                    sprintf($this->getTranslatorHelper()
+                                 ->translate('Hello again %s. Your new password is: %s. Please, follow this link %s to log in with your new password.'), $user->getUsername(), $password, $fullLink)
                 )
                 ) {
-                    $flashMessage = sprintf($this->getTranslatorHelper()->translate('Something went wrong when trying to send password! Please, try again later.'), $email);
+                    $flashMessage = sprintf($this->getTranslatorHelper()
+                                                 ->translate('Something went wrong when trying to send password! Please, try again later.'), $email);
                     $this->flashMessenger()
-                        ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
-                        ->addMessage($flashMessage);
+                         ->setNamespace(FlashMessenger::NAMESPACE_WARNING)
+                         ->addMessage($flashMessage);
+
                     return $this->redirect()->toRoute(RouteCollector::ROUTE_LOGIN);
                 }
-                $flashMessage = sprintf($this->getTranslatorHelper()->translate('Confirmation successful! You have a new password. An email has been sent to %s with your new password.'), $email);
+                $flashMessage = sprintf($this->getTranslatorHelper()
+                                             ->translate('Confirmation successful! You have a new password. An email has been sent to %s with your new password.'), $email);
                 $this->flashMessenger()
-                    ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
-                    ->addMessage($flashMessage);
+                     ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
+                     ->addMessage($flashMessage);
             }
         }
 
@@ -370,16 +395,19 @@ class AuthenticationController extends AbstractActionController
     protected function getBaseUrl()
     {
         $uri = $this->getRequest()->getUri();
+
         return sprintf('%s://%s', $uri->getScheme(), $uri->getHost());
     }
 
     /**
      * @param $options
+     *
      * @return $this
      */
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -395,11 +423,13 @@ class AuthenticationController extends AbstractActionController
 
     /**
      * @param $translatorHelper
+     *
      * @return $this
      */
     public function setTranslatorHelper($translatorHelper)
     {
         $this->translatorHelper = $translatorHelper;
+
         return $this;
 
     }
@@ -416,11 +446,13 @@ class AuthenticationController extends AbstractActionController
 
     /**
      * @param $userFormHelper
+     *
      * @return $this
      */
     public function setUserFormHelper($userFormHelper)
     {
         $this->userFormHelper = $userFormHelper;
+
         return $this;
 
     }
@@ -445,11 +477,13 @@ class AuthenticationController extends AbstractActionController
 
     /**
      * @param \Zend\Authentication\AuthenticationService $authenticationService
+     *
      * @return $this
      */
     public function setAuthenticationService($authenticationService)
     {
         $this->authenticationService = $authenticationService;
+
         return $this;
     }
 
@@ -463,11 +497,13 @@ class AuthenticationController extends AbstractActionController
 
     /**
      * @param \o0psCore\Factory\Service\MailFactory $mailHelper
+     *
      * @return $this
      */
     public function setMailHelper($mailHelper)
     {
         $this->mailHelper = $mailHelper;
+
         return $this;
     }
 
@@ -481,11 +517,13 @@ class AuthenticationController extends AbstractActionController
 
     /**
      * @param \o0psCore\Factory\Service\UserManagerFactory $userManager
+     *
      * @return $this
      */
     public function setUserManager($userManager)
     {
         $this->userManager = $userManager;
+
         return $this;
     }
 
@@ -499,21 +537,25 @@ class AuthenticationController extends AbstractActionController
 
     /**
      * @param \o0psCore\Mapper\User $userMapper
+     *
      * @return $this
      */
     public function setUserMapper($userMapper)
     {
         $this->userMapper = $userMapper;
+
         return $this;
     }
 
     /**
      * @param $viewHelperManager
+     *
      * @return $this
      */
     public function setViewHelperManager($viewHelperManager)
     {
         $this->viewHelperManager = $viewHelperManager;
+
         return $this;
     }
 
@@ -522,8 +564,9 @@ class AuthenticationController extends AbstractActionController
      */
     protected function getViewHelperManager()
     {
-        if (null === $this->viewHelperManager)
+        if (null === $this->viewHelperManager) {
             throw new RuntimeException('No ViewHelperManager instance provided');
+        }
 
         return $this->viewHelperManager;
     }
@@ -533,8 +576,9 @@ class AuthenticationController extends AbstractActionController
      */
     protected function getHeadScript()
     {
-        if (null === $this->headScript)
+        if (null === $this->headScript) {
             $this->headScript = $this->getViewHelperManager()->get('HeadScript');
+        }
 
         return $this->headScript;
     }
@@ -544,8 +588,9 @@ class AuthenticationController extends AbstractActionController
      */
     protected function getInlineScript()
     {
-        if (null === $this->inlineScript)
+        if (null === $this->inlineScript) {
             $this->inlineScript = $this->getViewHelperManager()->get('InlineScript');
+        }
 
         return $this->inlineScript;
     }
@@ -555,8 +600,9 @@ class AuthenticationController extends AbstractActionController
      */
     protected function getHeadLink()
     {
-        if (null === $this->headLink)
+        if (null === $this->headLink) {
             $this->headLink = $this->getViewHelperManager()->get('HeadLink');
+        }
 
         return $this->headLink;
     }

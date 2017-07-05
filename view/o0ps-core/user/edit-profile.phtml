@@ -4,61 +4,61 @@ $form = $this->form;
 
 $form->setAttributes([
     'data-parsley-validate' => '',
-    'novalidate' => '',
-    'class' => 'form'
+    'novalidate'            => '',
+    'class'                 => 'form',
 ]);
 
 $form->get('username')->setAttributes([
-    'required' => false,
-    'readonly' => 'true',
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Username')
+    'required'    => false,
+    'readonly'    => 'true',
+    'class'       => 'form-control',
+    'placeholder' => $this->translate('Username'),
 ]);
 
 $form->get('email')->setAttributes([
-    'required' => false,
-    'readonly' => 'true',
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Email')
+    'required'    => false,
+    'readonly'    => 'true',
+    'class'       => 'form-control',
+    'placeholder' => $this->translate('Email'),
 ]);
 
 $form->get('password')->setAttributes([
-    'required' => false,
-    'readonly' => 'true',
-    'class' => 'form-control',
-    'placeholder' => '********'
+    'required'    => false,
+    'readonly'    => 'true',
+    'class'       => 'form-control',
+    'placeholder' => '********',
 ]);
 
 $form->get('question')->setAttributes([
     'required' => false,
     'readonly' => 'true',
-    'class' => 'form-control',
+    'class'    => 'form-control',
 ]);
 
 $form->get('firstName')->setAttributes([
-    'required' => false,
+    'required'             => false,
     'data-parsley-trigger' => 'change',
-    'autocomplete' => 'off',
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Enter first name')
+    'autocomplete'         => 'off',
+    'class'                => 'form-control',
+    'placeholder'          => $this->translate('Enter first name'),
 ]);
 
 $form->get('lastName')->setAttributes([
-    'required' => false,
+    'required'             => false,
     'data-parsley-trigger' => 'change',
-    'autocomplete' => 'off',
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Enter last name')
+    'autocomplete'         => 'off',
+    'class'                => 'form-control',
+    'placeholder'          => $this->translate('Enter last name'),
 ]);
 
 $form->get('language')->setAttributes([
     'required' => false,
-    'class' => 'form-control select2',
+    'class'    => 'form-control select2',
 ]);
 
 $form->get('submit')->setAttributes([
     'class' => 'btn btn-space btn-primary',
-    'value' => $this->translate('Save')
+    'value' => $this->translate('Save'),
 ]);
 
 $form->prepare();

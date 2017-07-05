@@ -3,39 +3,39 @@
 $form = $this->form;
 
 $form->setAttributes([
-    'class' => 'form-horizontal',
+    'class'                 => 'form-horizontal',
     'data-parsley-validate' => '',
-    'novalidate' => ''
+    'novalidate'            => '',
 ]);
 
 $form->get('usernameOrEmail')->setAttributes([
-    'id' => 'username',
-    'data-parsley-trigger' => 'change',
+    'id'                                    => 'username',
+    'data-parsley-trigger'                  => 'change',
     'data-parsley-errors-messages-disabled' => 'true',
-    'data-parsley-class-handler' => '#username-handler',
-    'autocomplete' => 'off',
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Username or Email')
+    'data-parsley-class-handler'            => '#username-handler',
+    'autocomplete'                          => 'off',
+    'class'                                 => 'form-control',
+    'placeholder'                           => $this->translate('Username or Email'),
 ]);
 
 $form->get('password')->setAttributes([
-    'id' => 'password',
-    'data-parsley-trigger' => 'change',
+    'id'                                    => 'password',
+    'data-parsley-trigger'                  => 'change',
     'data-parsley-errors-messages-disabled' => 'true',
-    'data-parsley-class-handler' => '#password-handler',
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Password')
+    'data-parsley-class-handler'            => '#password-handler',
+    'class'                                 => 'form-control',
+    'placeholder'                           => $this->translate('Password'),
 ]);
 
 $form->get('rememberme')->setAttributes([
-    'id' => 'remember'
+    'id' => 'remember',
 ]);
 
 $form->get('submit')->setAttributes([
-    'id' => 'send_btn',
+    'id'           => 'send_btn',
     'data-dismiss' => 'modal',
-    'class' => 'btn btn-primary btn-lg',
-    'value' => $this->translate('Log In')
+    'class'        => 'btn btn-primary btn-lg',
+    'value'        => $this->translate('Log In'),
 ]);
 
 $form->prepare();

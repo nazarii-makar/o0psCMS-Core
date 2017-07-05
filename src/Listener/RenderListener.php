@@ -7,10 +7,18 @@ use Zend\EventManager\ListenerAggregateInterface;
 use Zend\EventManager\ListenerAggregateTrait;
 use Zend\Mvc\MvcEvent;
 
+/**
+ * Class RenderListener
+ * @package o0psCore\Listener
+ */
 class RenderListener implements ListenerAggregateInterface
 {
     use ListenerAggregateTrait;
 
+    /**
+     * @param EventManagerInterface $events
+     * @param int                   $priority
+     */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
     }

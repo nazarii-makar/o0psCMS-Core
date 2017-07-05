@@ -8,8 +8,19 @@ use o0psCore\Acl\AclDb;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
+/**
+ * Class AclFactory
+ * @package o0psCore\Factory\Service
+ */
 class AclFactory implements FactoryInterface
 {
+    /**
+     * @param ContainerInterface $container
+     * @param string             $requestedName
+     * @param array|null         $options
+     *
+     * @return Acl|AclDb
+     */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $config = $container->get('config');
@@ -22,6 +33,13 @@ class AclFactory implements FactoryInterface
         return $service;
     }
 
+    /**
+     * @param ServiceLocatorInterface $container
+     * @param null                    $name
+     * @param null                    $requestedName
+     *
+     * @return mixed
+     */
     public function createService(ServiceLocatorInterface $container, $name = null, $requestedName = null)
     {
         return $this($container, $requestedName, []);

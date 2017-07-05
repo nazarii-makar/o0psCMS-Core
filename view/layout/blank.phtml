@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <?= $this->headMeta()
-        ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+             ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
     ?>
 
     <meta name="description" content="">
@@ -13,8 +13,8 @@
     <?= $this->headTitle('o0psCMS')->setSeparator(' | ')->setAutoEscape(false) ?>
 
     <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('assets/img/favicon.ico')])
-        ->prependStylesheet($this->basePath('assets/css/style.css'))
-        ->prependStylesheet($this->basePath('assets/lib/stroke-7/style.css'))
+             ->prependStylesheet($this->basePath('assets/css/style.css'))
+             ->prependStylesheet($this->basePath('assets/lib/stroke-7/style.css'))
     ?>
 
     <?= $this->headScript() ?>
@@ -29,9 +29,9 @@
 <?= $this->content ?>
 
 <?= $this->inlineScript()
-    ->appendFile($this->basePath('assets/lib/jquery/jquery.min.js'))
-    ->appendFile($this->basePath('assets/lib/bootstrap/dist/js/bootstrap.min.js'))
-    ->appendFile($this->basePath('assets/lib/parsley/parsley.min.js'))
+         ->appendFile($this->basePath('assets/lib/jquery/jquery.min.js'))
+         ->appendFile($this->basePath('assets/lib/bootstrap/dist/js/bootstrap.min.js'))
+         ->appendFile($this->basePath('assets/lib/parsley/parsley.min.js'))
 ?>
 
 <script type="text/javascript">

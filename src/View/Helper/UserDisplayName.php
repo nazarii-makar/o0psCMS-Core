@@ -6,17 +6,24 @@ use Zend\View\Helper\AbstractHelper;
 use Zend\Authentication\AuthenticationService;
 use o0psCore\Entity\User;
 
+/**
+ * Class UserDisplayName
+ * @package o0psCore\View\Helper
+ */
 class UserDisplayName extends AbstractHelper
 {
     /**
      * @var AuthenticationService
      */
     protected $authService;
+
     /**
      * __invoke
      *
      * @access public
+     *
      * @param \o0psCore\Entity\User $user
+     *
      * @throws \DomainException
      * @return String
      */
@@ -43,8 +50,10 @@ class UserDisplayName extends AbstractHelper
             $displayName = $user->getEmail();
             $displayName = substr($displayName, 0, strpos($displayName, '@'));
         }
+
         return $displayName;
     }
+
     /**
      * Get authService.
      *
@@ -54,15 +63,18 @@ class UserDisplayName extends AbstractHelper
     {
         return $this->authService;
     }
+
     /**
      * Set authService.
      *
      * @param AuthenticationService $authService
+     *
      * @return $this
      */
     public function setAuthService(AuthenticationService $authService)
     {
         $this->authService = $authService;
+
         return $this;
     }
 }

@@ -2,6 +2,10 @@
 
 namespace o0psCore\Mapper;
 
+/**
+ * Class State
+ * @package o0psCore\Mapper
+ */
 class State
 {
     /**
@@ -19,12 +23,17 @@ class State
      */
     protected $translatorHelper;
 
+    /**
+     * @param $id
+     *
+     * @return bool|null|object
+     */
     public function findById($id)
     {
         $entityManager = $this->getEntityManager();
         try {
             $state = $entityManager->getRepository('o0psCore\Entity\State')
-                ->find($id);
+                                   ->find($id);
         } catch (\Exception $e) {
             return false;
         }
@@ -34,11 +43,13 @@ class State
 
     /**
      * @param $options
+     *
      * @return $this
      */
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -54,11 +65,13 @@ class State
 
     /**
      * @param $entityManager
+     *
      * @return $this
      */
     public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
+
         return $this;
 
     }
@@ -75,11 +88,13 @@ class State
 
     /**
      * @param $translatorHelper
+     *
      * @return $this
      */
     public function setTranslatorHelper($translatorHelper)
     {
         $this->translatorHelper = $translatorHelper;
+
         return $this;
 
     }

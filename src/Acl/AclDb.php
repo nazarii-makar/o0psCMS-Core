@@ -6,7 +6,12 @@ use Zend\Permissions\Acl\Acl as ZendAcl,
     Zend\Permissions\Acl\Role\GenericRole as Role,
     Zend\Permissions\Acl\Resource\GenericResource as Resource;
 
-class AclDb extends ZendAcl {
+/**
+ * Class AclDb
+ * @package o0psCore\Acl
+ */
+class AclDb extends ZendAcl
+{
     /**
      * Default Role
      */
@@ -19,10 +24,10 @@ class AclDb extends ZendAcl {
      */
     public function __construct($entityManager)
     {
-        $roles = $entityManager->getRepository('o0psCore\Entity\Role')->findAll();
-        $resources = $entityManager->getRepository('o0psCore\Entity\Resource')->findAll();
+        $roles      = $entityManager->getRepository('o0psCore\Entity\Role')->findAll();
+        $resources  = $entityManager->getRepository('o0psCore\Entity\Resource')->findAll();
         $privileges = $entityManager->getRepository('o0psCore\Entity\Privilege')->findAll();
-        
+
         $this->_addRoles($roles)
              ->_addAclRules($resources, $privileges);
     }
@@ -31,17 +36,18 @@ class AclDb extends ZendAcl {
      * Adds Roles to ACL
      *
      * @param array $roles
+     *
      * @return $this
      */
     protected function _addRoles($roles)
     {
         /** @var \o0psCore\Entity\Role $role */
-        foreach($roles as $role) {
+        foreach ($roles as $role) {
             if (!$this->hasRole($role->getName())) {
-                $parents = $role->getParents()->toArray();
+                $parents     = $role->getParents()->toArray();
                 $parentNames = [];
                 /** @var \o0psCore\Entity\Role $parent */
-                foreach($parents as $parent) {
+                foreach ($parents as $parent) {
                     $parentNames[] = $parent->getName();
                 }
                 $this->addRole(new Role($role->getName()), $parentNames);
@@ -56,6 +62,7 @@ class AclDb extends ZendAcl {
      *
      * @param array $resources
      * @param array $privileges
+     *
      * @return $this
      * @throws \Exception
      */
@@ -70,10 +77,12 @@ class AclDb extends ZendAcl {
 
         /** @var \o0psCore\Entity\Privilege $privilege */
         foreach ($privileges as $privilege) {
-            if($privilege->getPermissionAllow()) {
-                $this->allow($privilege->getRole()->getName(), $privilege->getResource()->getName(), $privilege->getName());
+            if ($privilege->getPermissionAllow()) {
+                $this->allow($privilege->getRole()->getName(), $privilege->getResource()
+                                                                         ->getName(), $privilege->getName());
             } else {
-                $this->deny($privilege->getRole()->getName(), $privilege->getResource()->getName(), $privilege->getName());
+                $this->deny($privilege->getRole()->getName(), $privilege->getResource()
+                                                                        ->getName(), $privilege->getName());
             }
         }
 

@@ -4,6 +4,10 @@ namespace o0psCore\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class ModuleOptions
+ * @package o0psCore\Options
+ */
 class ModuleOptions extends AbstractOptions
 {
     /**

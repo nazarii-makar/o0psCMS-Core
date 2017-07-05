@@ -1,64 +1,63 @@
 <?php
 
 return [
-     'navigation' => [
-         'default' => [
-             [
-                 'label' => 'Dashboard',
-                 'route' => 'o0ps-cms',
-				 'resource' => 'o0psCore\Controller\AdminController',
-				 'privilege' => 'index',
-             ],
-			 [
-				 'label' => 'User',
-				 'route' => 'user-index',
-				 'controller' => 'Index',
-				 'action'     => 'index',
-				 'resource'	  => 'o0psUser\Controller\Index',
-				 'privilege'  => 'index',
-			 ],
-			 [
-				 'label' => 'Admin',
-				 'route' => 'user-admin',
-				 'controller' => 'Admin',
-				 'action'     => 'index',
-				 'resource'	  => 'o0psUser\Controller\Admin',
-				 'privilege'  => 'index',
-			 ],
-			 [
-                 'label' => 'Login',
-                 'route' => 'user-index',
-				 'controller' => 'Index',
-				 'action'     => 'login',
-				 'resource'	  => 'o0psUser\Controller\Index',
-				 'privilege'  => 'login',
-             ],
-             [
-                 'label' => 'Registration',
-                 'route' => 'user-register',
-				 'controller' => 'Registration',
-				 'action'     => 'index',
-				 'resource'	  => 'o0psUser\Controller\Registration',
-				 'privilege'  => 'index',
-				 'title'	  => 'Registration Form'
-             ],
-             [
-                 'label' => 'Edit profile',
-                 'route' => 'user-register',
-				 'controller' => 'Registration',
-				 'action'     => 'editProfile',
-				 'resource'	  => 'o0psUser\Controller\Registration',
-				 'privilege'  => 'editProfile',
-             ],
+    'navigation' => [
+        'o0psCms\LeftSidebar' => [
             [
-                 'label' => 'Logout',
-                 'route' => 'user-index',
-				 'controller' => 'Index',
-				 'action'     => 'logout',
-				 'resource'	  => 'o0psUser\Controller\Index',
-				 'privilege'  => 'logout'
-             ],
-			
-		 ],
-	 ],
+                'label'     => 'Dashboard',
+                'route'     => 'o0ps-cms',
+                'resource'  => o0psCore\Controller\AdminController::class,
+                'privilege' => 'index',
+                'icon'      => 'icon s7-monitor',
+            ],
+            [
+                'label'     => 'Users',
+                'uri'       => '#/',
+                'resource'  => o0psCore\Controller\UserController::class,
+                'privilege' => 'createUser',
+                'icon'      => 'icon s7-users',
+                'pages'     => [
+                    [
+                        'label'     => 'List',
+                        'route'       => 'o0ps-cms/listUser',
+                        'resource'  => o0psCore\Controller\UserController::class,
+                        'privilege' => 'index',
+                    ],
+                    [
+                        'label'     => 'Create',
+                        'route'     => 'o0ps-cms/createUser',
+                        'resource'  => o0psCore\Controller\UserController::class,
+                        'privilege' => 'createUser',
+                    ],
+                ],
+            ],
+            [
+                'label'     => 'Rules',
+                'uri'       => '#/',
+                'resource'  => o0psCore\Controller\RuleController::class,
+                'privilege' => 'index',
+                'icon'      => 'icon s7-unlock',
+                'pages'     => [
+                    [
+                        'label'     => 'Resources',
+                        'route'       => 'o0ps-cms/rule/resources',
+                        'resource'  => o0psCore\Controller\RuleController::class,
+                        'privilege' => 'resources',
+                    ],
+                    [
+                        'label'     => 'Privileges',
+                        'route'       => 'o0ps-cms/rule/privileges',
+                        'resource'  => o0psCore\Controller\RuleController::class,
+                        'privilege' => 'privileges',
+                    ],
+                    [
+                        'label'     => 'Role',
+                        'route'       => 'o0ps-cms/rule/roles',
+                        'resource'  => o0psCore\Controller\RuleController::class,
+                        'privilege' => 'roles',
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];

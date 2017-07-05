@@ -6,6 +6,10 @@ use Zend\View\Helper\AbstractHelper;
 use Zend\Authentication\AuthenticationService;
 use o0psCore\Entity\User;
 
+/**
+ * Class UserEntity
+ * @package o0psCore\View\Helper
+ */
 class UserEntity extends AbstractHelper
 {
     /**
@@ -17,7 +21,9 @@ class UserEntity extends AbstractHelper
      * __invoke
      *
      * @access public
+     *
      * @param \o0psCore\Entity\User $user
+     *
      * @throws \DomainException
      * @return String
      */
@@ -39,6 +45,7 @@ class UserEntity extends AbstractHelper
 
         return $user;
     }
+
     /**
      * Get authService.
      *
@@ -48,15 +55,18 @@ class UserEntity extends AbstractHelper
     {
         return $this->authService;
     }
+
     /**
      * Set authService.
      *
      * @param AuthenticationService $authService
+     *
      * @return $this
      */
     public function setAuthService(AuthenticationService $authService)
     {
         $this->authService = $authService;
+
         return $this;
     }
 }

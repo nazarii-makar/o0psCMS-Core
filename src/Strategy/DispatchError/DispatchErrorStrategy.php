@@ -8,24 +8,33 @@ use Zend\EventManager\EventInterface;
 use Zend\Mvc\Application;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class DispatchErrorStrategy
+ * @package o0psCore\Strategy\DispatchError
+ */
 class DispatchErrorStrategy implements DispatchErrorInterface
 {
+    /**
+     * @param EventInterface $e
+     *
+     * @return void
+     */
     public function onDispatchError(EventInterface $e)
     {
         /** @var \Zend\Mvc\Application $application */
         $application = $e->getApplication();
-        $sm = $application->getServiceManager();
-        $config = $sm->get('config');
-        $request = $sm->get('request');
+        $sm          = $application->getServiceManager();
+        $config      = $sm->get('config');
+        $request     = $sm->get('request');
         /** @var \o0psCore\Options\ModuleOptions $moduleOptions */
         $moduleOptions = $sm->get('o0psCore_module_options');
-        $uri = $request->getUri();
-        $path = $uri->getPath();
-        $path = ltrim($path, '/');
-        $adminPath = $config['router']['routes'][RouteCollector::ROUTE_CMS]['options']['route'] ?? null;
-        $adminPath = ltrim($adminPath, '/');
-        $pathArray = explode("/", $path);
-        $route = array_shift($pathArray);
+        $uri           = $request->getUri();
+        $path          = $uri->getPath();
+        $path          = ltrim($path, '/');
+        $adminPath     = $config['router']['routes'][RouteCollector::ROUTE_CMS]['options']['route'] ?? null;
+        $adminPath     = ltrim($adminPath, '/');
+        $pathArray     = explode("/", $path);
+        $route         = array_shift($pathArray);
         if ($route == $adminPath || $moduleOptions->isDefaultErrorTemplate()) {
             $content = [];
             if ($e->isError()) {
@@ -37,7 +46,8 @@ class DispatchErrorStrategy implements DispatchErrorInterface
                         $reasonMessage = 'The requested middleware was unable to dispatch the request.';
                         break;
                     case Application::ERROR_CONTROLLER_NOT_FOUND:
-                        $reasonMessage = 'The requested controller could not be mapped to an existing controller class.';
+                        $reasonMessage =
+                            'The requested controller could not be mapped to an existing controller class.';
                         break;
                     case Application::ERROR_CONTROLLER_INVALID:
                         $reasonMessage = 'The requested controller was not dispatchable.';
@@ -56,8 +66,8 @@ class DispatchErrorStrategy implements DispatchErrorInterface
                 $reasonMessage = 'The page you are looking for might have been removed.';
             }
             $content['reasonMessage'] = $reasonMessage;
-            $viewModel = new ViewModel();
-            $exception = $e->getParam('exception');
+            $viewModel                = new ViewModel();
+            $exception                = $e->getParam('exception');
             if ($exception) {
                 $content['exception'] = $exception;
                 $viewModel->setTemplate('o0psCore/500');

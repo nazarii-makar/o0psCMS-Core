@@ -1,7 +1,9 @@
 <div class="am-left-sidebar">
     <div class="content">
         <div class="am-logo"></div>
-        <?php $this->navigation('Zend\Navigation\o0psCms\LeftSidebar')->menu()->setPartial(['template/sidebar-elements', 'default']) ?>
+        <?php $this->navigation('Zend\Navigation\o0psCms\LeftSidebar')
+                   ->menu()
+                   ->setPartial(['template/sidebar-elements', 'default']) ?>
         <?= $this->navigation('Zend\Navigation\o0psCms\LeftSidebar')->menu()->render(); ?>
         <!--Sidebar bottom content-->
     </div>

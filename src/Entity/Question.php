@@ -27,7 +27,7 @@ class Question
      * @ORM\Column(name="question", type="string", length=50, nullable=false, unique=true)
      */
     protected $question;
-    
+
     /**
      * Get id
      *
@@ -41,7 +41,8 @@ class Question
     /**
      * Set question
      *
-     * @param  string   $question
+     * @param  string $question
+     *
      * @return Language
      */
     public function setQuestion($question)

@@ -4,34 +4,34 @@ $form = $this->form;
 
 $form->setAttributes([
     'data-parsley-validate' => '',
-    'novalidate' => '',
-    'class' => 'form'
+    'novalidate'            => '',
+    'class'                 => 'form',
 ]);
 
 $form->get('question')->setAttributes([
     'required' => true,
-    'class' => 'form-control select2',
+    'class'    => 'form-control select2',
 ]);
 
 $form->get('answer')->setAttributes([
     'data-parsley-trigger' => 'change',
-    'autocomplete' => 'off',
-    'required' => true,
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Confirm New Password')
+    'autocomplete'         => 'off',
+    'required'             => true,
+    'class'                => 'form-control',
+    'placeholder'          => $this->translate('Answer'),
 ]);
 
 $form->get('currentPassword')->setAttributes([
     'data-parsley-trigger' => 'change',
-    'autocomplete' => 'off',
-    'required' => true,
-    'class' => 'form-control',
-    'placeholder' => $this->translate('Current password')
+    'autocomplete'         => 'off',
+    'required'             => true,
+    'class'                => 'form-control',
+    'placeholder'          => $this->translate('Current password'),
 ]);
 
 $form->get('submit')->setAttributes([
     'class' => 'btn btn-space btn-primary',
-    'value' => $this->translate('Save')
+    'value' => $this->translate('Save'),
 ]);
 
 $form->prepare();

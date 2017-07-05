@@ -4,8 +4,17 @@ namespace o0psCore\Strategy\DispatchError;
 
 use Zend\EventManager\EventInterface;
 
+/**
+ * Class Logger
+ * @package o0psCore\Strategy\DispatchError
+ */
 class Logger implements DispatchErrorInterface
 {
+    /**
+     * @param EventInterface $e
+     *
+     * @return void
+     */
     public function onDispatchError(EventInterface $e)
     {
         $exception = $e->getParam('exception');

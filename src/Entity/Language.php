@@ -48,7 +48,8 @@ class Language
     /**
      * Set name
      *
-     * @param  string   $name
+     * @param  string $name
+     *
      * @return Language
      */
     public function setName($name)
@@ -71,7 +72,8 @@ class Language
     /**
      * Set abbreviation
      *
-     * @param  string   $abbreviation
+     * @param  string $abbreviation
+     *
      * @return Language
      */
     public function setAbbreviation($abbreviation)

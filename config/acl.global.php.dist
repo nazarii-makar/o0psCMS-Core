@@ -3,68 +3,75 @@
 return [
     'acl' => [
         'use_database_storage' => false,
-        'redirect_route' => [
-//            'params' => [
-//                'controller' => 'my_controller',
-//                'action' => 'my_action',
-//                'id' => '1',
-//            ],
-//            'options' => [
-//                'name' => 'home',
-//            ],
+        'redirect_route'       => [
+            //            'params' => [
+            //                'controller' => 'my_controller',
+            //                'action' => 'my_action',
+            //                'id' => '1',
+            //            ],
+            //            'options' => [
+            //                'name' => 'home',
+            //            ],
         ],
-        'roles' => [
+        'roles'                => [
             'guest' => null,
-            'user' => 'guest',
+            'user'  => 'guest',
             'admin' => 'user',
         ],
-        'resources' => [
+        'resources'            => [
             'allow' => [
-                'Application\Controller\IndexController' => [
+                'Application\Controller\IndexController'       => [
                     'index' => 'guest',
+                    'subscribe' => 'guest'
                 ],
                 'o0psCore\Controller\AuthenticationController' => [
-                    'login' => 'guest',
-                    'signUp' => 'guest',
-                    'forgotPassword' => 'guest',
-                    'confirmEmail' => 'guest',
+                    'login'                      => 'guest',
+                    'signUp'                     => 'guest',
+                    'forgotPassword'             => 'guest',
+                    'confirmEmail'               => 'guest',
                     'confirmEmailChangePassword' => 'guest',
-                    'logout' => 'user',
+                    'logout'                     => 'user',
                 ],
-                'o0psCore\Controller\UserController' => [
-                    'profile' => 'user',
-                    'editProfile' => 'user',
-                    'changeEmail' => 'user',
-                    'changePassword' => 'user',
+                'o0psCore\Controller\RuleController'           => [
+                    'index'      => 'admin',
+                    'resources'  => 'admin',
+                    'privileges' => 'admin',
+                    'roles'      => 'admin',
+                ],
+                'o0psCore\Controller\UserController'           => [
+                    'index'                  => 'user',
+                    'editProfile'            => 'user',
+                    'changeEmail'            => 'user',
+                    'changePassword'         => 'user',
                     'changeSecurityQuestion' => 'user',
-                    'createUser' => 'admin',
-                    'editUser' => 'admin',
-                    'deleteUser' => 'admin',
-                    'setUserState' => 'admin',
+                    'createUser'             => 'admin',
+                    'editUser'               => 'admin',
+                    'deleteUser'             => 'admin',
+                    'setUserState'           => 'admin',
                 ],
 
                 'o0psCore\Controller\AdminController' => [
                     'index' => 'user',
                 ],
-                'Public Resource' => [
+                'Public Resource'                     => [
                     'view' => 'guest',
                 ],
-                'Private Resource' => [
+                'Private Resource'                    => [
                     'view' => 'user',
                 ],
-                'Admin Resource' => [
+                'Admin Resource'                      => [
                     'view' => 'admin',
                 ],
             ],
-            'deny' => [
+            'deny'  => [
                 'o0psCore\Controller\AuthenticationController' => [
-                    'login' => 'user',
-                    'signUp' => 'user',
-                    'forgotPassword' => 'user',
-                    'confirmEmail' => 'user',
+                    'login'                      => 'user',
+                    'signUp'                     => 'user',
+                    'forgotPassword'             => 'user',
+                    'confirmEmail'               => 'user',
                     'confirmEmailChangePassword' => 'user',
                 ],
-            ]
-        ]
+            ],
+        ],
     ],
 ];

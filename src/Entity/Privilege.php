@@ -17,6 +17,16 @@ use Zend\Form\Annotation;
 class Privilege
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Annotation\Exclude()
+     */
+    protected $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100, nullable=true)
@@ -28,16 +38,6 @@ class Privilege
      */
     protected $name;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @Annotation\Exclude()
-     */
-    protected $id;
-    
     /**
      * @var \o0psCore\Entity\Resource
      *
@@ -51,21 +51,21 @@ class Privilege
      * "property": "name"})
      */
     protected $resource;
-    
+
     /**
-    * @var \o0psCore\Entity\Role
-    *
-    * @ORM\ManyToOne(targetEntity="o0psCore\Entity\Role")
-    * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=false)
-    * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
-    * @Annotation\Options({
-    * "label":"Role:",
-    * "empty_option": "Please, choose a role",
-    * "target_class":"o0psUser\Entity\Role",
-    * "property": "name"})
-    */
+     * @var \o0psCore\Entity\Role
+     *
+     * @ORM\ManyToOne(targetEntity="o0psCore\Entity\Role")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=false)
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({
+     * "label":"Role:",
+     * "empty_option": "Please, choose a role",
+     * "target_class":"o0psUser\Entity\Role",
+     * "property": "name"})
+     */
     protected $role;
-    
+
     /**
      * @var boolean
      *
@@ -79,7 +79,8 @@ class Privilege
     /**
      * Set name
      *
-     * @param  string   $name
+     * @param  string $name
+     *
      * @return Privilege
      */
     public function setName($name)
@@ -108,11 +109,12 @@ class Privilege
     {
         return $this->id;
     }
-    
+
     /**
      * Set resource
      *
      * @param  \o0psCore\Entity\Resource $resource
+     *
      * @return \o0psCore\Entity\Privilege
      */
     public function setResource($resource)
@@ -131,11 +133,12 @@ class Privilege
     {
         return $this->resource;
     }
-    
+
     /**
      * Set role
      *
      * @param  Role $role
+     *
      * @return \o0psCore\Entity\Privilege
      */
     public function setRole($role)
@@ -154,11 +157,12 @@ class Privilege
     {
         return $this->role;
     }
-    
+
     /**
      * Set permissionAllow
      *
      * @param  boolean $permissionAllow
+     *
      * @return \o0psCore\Entity\Privilege
      */
     public function setPermissionAllow($permissionAllow)
@@ -167,7 +171,7 @@ class Privilege
 
         return $this;
     }
-    
+
     /**
      * Get permissionAllow
      *
@@ -177,5 +181,4 @@ class Privilege
     {
         return $this->permissionAllow;
     }
-    
 }

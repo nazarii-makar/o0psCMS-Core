@@ -1,0 +1,55 @@
+<?php if ($this->users === false) $this->users = [] ?>
+<div class="main-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="widget widget-fullwidth widget-small">
+                <div class="widget-head">
+                    <div class="title">User list</div>
+                </div>
+                <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <?php if ($this->isAllowed('o0psCore\Controller\UserController', 'editUser') ||
+                            $this->isAllowed('o0psCore\Controller\UserController', 'deleteUser')
+                        ) { ?>
+                            <th>Action</th>
+                        <?php } ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->users as $user) { ?>
+                        <tr class="odd gradeX">
+                            <td><?= $user->getId() ?></td>
+                            <td><?= $user->getUsername() ?></td>
+                            <td><?= $user->getFirstName() ?></td>
+                            <td><?= $user->getLastName() ?></td>
+                            <td><?= $user->getEmail() ?></td>
+                            <td><?= $user->getRole()->getName() ?></td>
+                            <?php if ($this->isAllowed('o0psCore\Controller\UserController', 'editUser') ||
+                                $this->isAllowed('o0psCore\Controller\UserController', 'deleteUser')
+                            ) { ?>
+                                <td>
+                                    <?php if ($this->isAllowed('o0psCore\Controller\UserController', 'editUser')) { ?>
+                                        <a href="<?= $this->url('o0ps-cms/editUser', ['id' => $user->getId()]) ?>"><span
+                                                class="s7-pen"></span></a>
+                                    <?php } ?>
+                                    <?php if ($this->isAllowed('o0psCore\Controller\UserController', 'deleteUser')) { ?>
+                                        <a href="<?= $this->url('o0ps-cms/deleteUser', ['id' => $user->getId()]) ?>"><span
+                                                class="s7-trash"></span></a>
+                                    <?php } ?>
+                                </td>
+                            <?php } ?>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

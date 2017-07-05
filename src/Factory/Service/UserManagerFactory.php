@@ -8,6 +8,10 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Session\SessionManager;
 
+/**
+ * Class UserManagerFactory
+ * @package o0psCore\Factory\Service
+ */
 class UserManagerFactory implements FactoryInterface
 {
     /**
@@ -42,24 +46,26 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
+     * @param string             $requestedName
+     * @param array|null         $options
+     *
      * @return $this
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $this->setOptions($container->get('o0psCore_module_options'))
-            ->setTranslatorHelper($container->get('MvcTranslator'))
-            ->setEntityManager($container->get('Doctrine\ORM\EntityManager'))
-            ->setAuthenticationService($container->get('Zend\Authentication\AuthenticationService'));
+             ->setTranslatorHelper($container->get('MvcTranslator'))
+             ->setEntityManager($container->get('Doctrine\ORM\EntityManager'))
+             ->setAuthenticationService($container->get('Zend\Authentication\AuthenticationService'));
 
         return $this;
     }
 
     /**
      * @param ServiceLocatorInterface $container
-     * @param null $name
-     * @param null $requestedName
+     * @param null                    $name
+     * @param null                    $requestedName
+     *
      * @return mixed
      */
     public function createService(ServiceLocatorInterface $container, $name = null, $requestedName = null)
@@ -69,6 +75,7 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
+     *
      * @return mixed
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -77,10 +84,11 @@ class UserManagerFactory implements FactoryInterface
     public function register($user)
     {
         $entityManager = $this->getEntityManager();
-        if ($this->getOptions()->isConfirmEmailRegistration())
+        if ($this->getOptions()->isConfirmEmailRegistration()) {
             $user->setState($entityManager->find('o0psCore\Entity\State', 1));
-        else
+        } else {
             $user->setState($entityManager->find('o0psCore\Entity\State', 2));
+        }
         $user->setRole($entityManager->find('o0psCore\Entity\Role', 2));
         $user->setLanguage($entityManager->find('o0psCore\Entity\Language', 1));
         $user->setRegistrationDate(new \DateTime());
@@ -95,6 +103,7 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
+     *
      * @return mixed
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -113,7 +122,8 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
-     * @param $password
+     * @param                              $password
+     *
      * @return mixed
      */
     public function changePassword($user, $password)
@@ -126,7 +136,8 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
-     * @param $email
+     * @param                              $email
+     *
      * @return mixed
      */
     public function changeEmail($user, $email)
@@ -138,8 +149,9 @@ class UserManagerFactory implements FactoryInterface
     }
 
     /**
-     * @param \o0psCore\Entity\User $user
+     * @param \o0psCore\Entity\User  $user
      * @param \o0psCore\Entity\State $state
+     *
      * @return mixed
      */
     public function setUserState($user, $state)
@@ -152,6 +164,7 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
+     *
      * @return mixed
      */
     public function forgotPassword($user)
@@ -164,6 +177,7 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
+     *
      * @return mixed
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -182,6 +196,7 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
+     *
      * @return array
      */
     public function confirmEmailChangePassword($user)
@@ -207,6 +222,7 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \o0psCore\Entity\User|Object $user
+     *
      * @return mixed
      */
     public function update($user)
@@ -223,12 +239,13 @@ class UserManagerFactory implements FactoryInterface
      * @param $username
      * @param $password
      * @param $rememberMe
+     *
      * @return bool|\Zend\Authentication\Result
      */
     public function authentication($username, $password, $rememberMe)
     {
         $authService = $this->getAuthenticationService();
-        $adapter = $authService->getAdapter();
+        $adapter     = $authService->getAdapter();
         $adapter->setIdentity($username);
         $adapter->setCredential($password);
 
@@ -238,7 +255,7 @@ class UserManagerFactory implements FactoryInterface
             $authService->getStorage()->write($identity);
 
             if ($rememberMe) {
-                $time = 1209600; // 14 days (1209600/3600 = 336 hours => 336/24 = 14 days)
+                $time           = 1209600; // 14 days (1209600/3600 = 336 hours => 336/24 = 14 days)
                 $sessionManager = new SessionManager();
                 $sessionManager->rememberMe($time);
             }
@@ -254,36 +271,53 @@ class UserManagerFactory implements FactoryInterface
      * @param int $c
      * @param int $n
      * @param int $s
+     *
      * @return bool|string
      */
     public function generatePassword($l = 8, $c = 0, $n = 0, $s = 0)
     {
         $count = $c + $n + $s;
-        $out = '';
+        $out   = '';
         if (!is_int($l) || !is_int($c) || !is_int($n) || !is_int($s)) {
             trigger_error('Argument(s) not an integer', E_USER_WARNING);
+
             return false;
-        } else if ($l < 0 || $l > 20 || $c < 0 || $n < 0 || $s < 0) {
-            trigger_error('Argument(s) out of range', E_USER_WARNING);
-            return false;
-        } else if ($c > $l) {
-            trigger_error('Number of password capitals required exceeds password length', E_USER_WARNING);
-            return false;
-        } else if ($n > $l) {
-            trigger_error('Number of password numerals exceeds password length', E_USER_WARNING);
-            return false;
-        } else if ($s > $l) {
-            trigger_error('Number of password capitals exceeds password length', E_USER_WARNING);
-            return false;
-        } else if ($count > $l) {
-            trigger_error('Number of password special characters exceeds specified password length', E_USER_WARNING);
-            return false;
+        } else {
+            if ($l < 0 || $l > 20 || $c < 0 || $n < 0 || $s < 0) {
+                trigger_error('Argument(s) out of range', E_USER_WARNING);
+
+                return false;
+            } else {
+                if ($c > $l) {
+                    trigger_error('Number of password capitals required exceeds password length', E_USER_WARNING);
+
+                    return false;
+                } else {
+                    if ($n > $l) {
+                        trigger_error('Number of password numerals exceeds password length', E_USER_WARNING);
+
+                        return false;
+                    } else {
+                        if ($s > $l) {
+                            trigger_error('Number of password capitals exceeds password length', E_USER_WARNING);
+
+                            return false;
+                        } else {
+                            if ($count > $l) {
+                                trigger_error('Number of password special characters exceeds specified password length', E_USER_WARNING);
+
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         $chars = "abcdefghijklmnopqrstuvwxyz";
-        $caps = strtoupper($chars);
-        $nums = "0123456789";
-        $syms = "!@#$%^&*()-+?";
+        $caps  = strtoupper($chars);
+        $nums  = "0123456789";
+        $syms  = "!@#$%^&*()-+?";
 
         for ($i = 0; $i < $l; $i++) {
             $out .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
@@ -291,7 +325,7 @@ class UserManagerFactory implements FactoryInterface
 
         if ($count) {
             $tmp1 = str_split($out);
-            $tmp2 = array();
+            $tmp2 = [];
 
             for ($i = 0; $i < $c; $i++) {
                 array_push($tmp2, substr($caps, mt_rand(0, strlen($caps) - 1), 1));
@@ -316,11 +350,13 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param $options
+     *
      * @return $this
      */
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -344,21 +380,25 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param \Zend\Authentication\AuthenticationService $authenticationService
+     *
      * @return $this
      */
     public function setAuthenticationService($authenticationService)
     {
         $this->authenticationService = $authenticationService;
+
         return $this;
     }
 
     /**
      * @param $entityManager
+     *
      * @return $this
      */
     public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
+
         return $this;
 
     }
@@ -375,11 +415,13 @@ class UserManagerFactory implements FactoryInterface
 
     /**
      * @param $translatorHelper
+     *
      * @return $this
      */
     public function setTranslatorHelper($translatorHelper)
     {
         $this->translatorHelper = $translatorHelper;
+
         return $this;
 
     }

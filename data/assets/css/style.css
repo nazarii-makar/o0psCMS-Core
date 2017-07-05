@@ -246,8 +246,8 @@ td, th {
 
 @font-face {
     font-family: 'Glyphicons Halflings';
-    src: url(../lib/bootstrap/dist/fonts/glyphicons-halflings-regular.eot);
-    src: url(../lib/bootstrap/dist/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(../lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff) format('woff'), url(../lib/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+    src: url(/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.eot);
+    src: url(/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff) format('woff'), url(/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
 }
 
 .glyphicon {
@@ -1456,9 +1456,6 @@ address, blockquote .small, blockquote footer, blockquote small, dd, dt, pre {
 @media (min-width: 768px) {
     .lead {
         font-size: 19.5px
-    }
-    .am-left-sidebar .sidebar-elements > li > ul.sub-menu {
-        display: none!important;
     }
 }
 
@@ -7202,152 +7199,152 @@ button:focus {
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/thin/raleway-thin.eot);
-    src: url(../lib/raleway/thin/raleway-thin.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/thin/raleway-thin.woff) format('woff'), url(../lib/raleway/thin/raleway-thin.ttf) format('truetype'), url(../lib/raleway/thin/raleway-thin.svg#ralewaythin) format('svg');
+    src: url(/assets/lib/raleway/thin/raleway-thin.eot);
+    src: url(/assets/lib/raleway/thin/raleway-thin.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/thin/raleway-thin.woff) format('woff'), url(/assets/lib/raleway/thin/raleway-thin.ttf) format('truetype'), url(/assets/lib/raleway/thin/raleway-thin.svg#ralewaythin) format('svg');
     font-weight: 100;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/extralight/raleway-extralight.eot);
-    src: url(../lib/raleway/extralight/raleway-extralight.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/extralight/raleway-extralight.woff) format('woff'), url(../lib/raleway/extralight/raleway-extralight.ttf) format('truetype'), url(../lib/raleway/extralight/raleway-extralight.svg#ralewayextralight) format('svg');
+    src: url(/assets/lib/raleway/extralight/raleway-extralight.eot);
+    src: url(/assets/lib/raleway/extralight/raleway-extralight.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/extralight/raleway-extralight.woff) format('woff'), url(/assets/lib/raleway/extralight/raleway-extralight.ttf) format('truetype'), url(/assets/lib/raleway/extralight/raleway-extralight.svg#ralewayextralight) format('svg');
     font-weight: 200;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/light/raleway-light.eot);
-    src: url(../lib/raleway/light/raleway-light.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/light/raleway-light.woff) format('woff'), url(../lib/raleway/light/raleway-light.ttf) format('truetype'), url(../lib/raleway/light/raleway-light.svg#ralewaylight) format('svg');
+    src: url(/assets/lib/raleway/light/raleway-light.eot);
+    src: url(/assets/lib/raleway/light/raleway-light.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/light/raleway-light.woff) format('woff'), url(/assets/lib/raleway/light/raleway-light.ttf) format('truetype'), url(/assets/lib/raleway/light/raleway-light.svg#ralewaylight) format('svg');
     font-weight: 300;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/regular/raleway-regular.eot);
-    src: url(../lib/raleway/regular/raleway-regular.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/regular/raleway-regular.woff) format('woff'), url(../lib/raleway/regular/raleway-regular.ttf) format('truetype'), url(../lib/raleway/regular/raleway-regular.svg#ralewayregular) format('svg');
+    src: url(/assets/lib/raleway/regular/raleway-regular.eot);
+    src: url(/assets/lib/raleway/regular/raleway-regular.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/regular/raleway-regular.woff) format('woff'), url(/assets/lib/raleway/regular/raleway-regular.ttf) format('truetype'), url(/assets/lib/raleway/regular/raleway-regular.svg#ralewayregular) format('svg');
     font-weight: 400;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/medium/raleway-medium.eot);
-    src: url(../lib/raleway/medium/raleway-medium.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/medium/raleway-medium.woff) format('woff'), url(../lib/raleway/medium/raleway-medium.ttf) format('truetype'), url(../lib/raleway/medium/raleway-medium.svg#ralewaymedium) format('svg');
+    src: url(/assets/lib/raleway/medium/raleway-medium.eot);
+    src: url(/assets/lib/raleway/medium/raleway-medium.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/medium/raleway-medium.woff) format('woff'), url(/assets/lib/raleway/medium/raleway-medium.ttf) format('truetype'), url(/assets/lib/raleway/medium/raleway-medium.svg#ralewaymedium) format('svg');
     font-weight: 500;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/semibold/raleway-semibold.eot);
-    src: url(../lib/raleway/semibold/raleway-semibold.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/semibold/raleway-semibold.woff) format('woff'), url(../lib/raleway/semibold/raleway-semibold.ttf) format('truetype'), url(../lib/raleway/semibold/raleway-semibold.svg#ralewaysemibold) format('svg');
+    src: url(/assets/lib/raleway/semibold/raleway-semibold.eot);
+    src: url(/assets/lib/raleway/semibold/raleway-semibold.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/semibold/raleway-semibold.woff) format('woff'), url(/assets/lib/raleway/semibold/raleway-semibold.ttf) format('truetype'), url(/assets/lib/raleway/semibold/raleway-semibold.svg#ralewaysemibold) format('svg');
     font-weight: 600;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/bold/raleway-bold.eot);
-    src: url(../lib/raleway/bold/raleway-bold.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/bold/raleway-bold.woff) format('woff'), url(../lib/raleway/bold/raleway-bold.ttf) format('truetype'), url(../lib/raleway/bold/raleway-bold.svg#ralewaybold) format('svg');
+    src: url(/assets/lib/raleway/bold/raleway-bold.eot);
+    src: url(/assets/lib/raleway/bold/raleway-bold.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/bold/raleway-bold.woff) format('woff'), url(/assets/lib/raleway/bold/raleway-bold.ttf) format('truetype'), url(/assets/lib/raleway/bold/raleway-bold.svg#ralewaybold) format('svg');
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/extrabold/raleway-extrabold.eot);
-    src: url(../lib/raleway/extrabold/raleway-extrabold.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/extrabold/raleway-extrabold.woff) format('woff'), url(../lib/raleway/extrabold/raleway-extrabold.ttf) format('truetype'), url(../lib/raleway/extrabold/raleway-extrabold.svg#ralewayextrabold) format('svg');
+    src: url(/assets/lib/raleway/extrabold/raleway-extrabold.eot);
+    src: url(/assets/lib/raleway/extrabold/raleway-extrabold.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/extrabold/raleway-extrabold.woff) format('woff'), url(/assets/lib/raleway/extrabold/raleway-extrabold.ttf) format('truetype'), url(/assets/lib/raleway/extrabold/raleway-extrabold.svg#ralewayextrabold) format('svg');
     font-weight: 800;
     font-style: normal
 }
 
 @font-face {
     font-family: Raleway;
-    src: url(../lib/raleway/heavy/raleway-heavy.eot);
-    src: url(../lib/raleway/heavy/raleway-heavy.eot?#iefix) format('embedded-opentype'), url(../lib/raleway/heavy/raleway-heavy.woff) format('woff'), url(../lib/raleway/heavy/raleway-heavy.ttf) format('truetype'), url(../lib/raleway/heavy/raleway-heavy.svg#ralewayheavy) format('svg');
+    src: url(/assets/lib/raleway/heavy/raleway-heavy.eot);
+    src: url(/assets/lib/raleway/heavy/raleway-heavy.eot?#iefix) format('embedded-opentype'), url(/assets/lib/raleway/heavy/raleway-heavy.woff) format('woff'), url(/assets/lib/raleway/heavy/raleway-heavy.ttf) format('truetype'), url(/assets/lib/raleway/heavy/raleway-heavy.svg#ralewayheavy) format('svg');
     font-weight: 900;
     font-style: normal
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/light/opensans-light-webfont.eot);
-    src: url(../lib/open-sans/light/opensans-light-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/light/opensans-light-webfont.woff) format('woff'), url(../lib/open-sans/light/opensans-light-webfont.ttf) format('truetype'), url(../lib/open-sans/light/opensans-light-webfont.svg#OpenSansLight) format('svg');
+    src: url(/assets/lib/open-sans/light/opensans-light-webfont.eot);
+    src: url(/assets/lib/open-sans/light/opensans-light-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/light/opensans-light-webfont.woff) format('woff'), url(/assets/lib/open-sans/light/opensans-light-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/light/opensans-light-webfont.svg#OpenSansLight) format('svg');
     font-weight: 300;
     font-style: normal
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/light-italic/opensans-light-italic-webfont.eot);
-    src: url(../lib/open-sans/light-italic/opensans-light-italic-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/light-italic/opensans-light-italic-webfont.woff) format('woff'), url(../lib/open-sans/light-italic/opensans-light-italic-webfont.ttf) format('truetype'), url(../lib/open-sans/light-italic/opensans-light-italic-webfont.svg#OpenSansLightItalic) format('svg');
+    src: url(/assets/lib/open-sans/light-italic/opensans-light-italic-webfont.eot);
+    src: url(/assets/lib/open-sans/light-italic/opensans-light-italic-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/light-italic/opensans-light-italic-webfont.woff) format('woff'), url(/assets/lib/open-sans/light-italic/opensans-light-italic-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/light-italic/opensans-light-italic-webfont.svg#OpenSansLightItalic) format('svg');
     font-weight: 300;
     font-style: italic
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/regular/opensans-regular-webfont.eot);
-    src: url(../lib/open-sans/regular/opensans-regular-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/regular/opensans-regular-webfont.woff) format('woff'), url(../lib/open-sans/regular/opensans-regular-webfont.ttf) format('truetype'), url(../lib/open-sans/regular/opensans-regular-webfont.svg#OpenSansRegular) format('svg');
+    src: url(/assets/lib/open-sans/regular/opensans-regular-webfont.eot);
+    src: url(/assets/lib/open-sans/regular/opensans-regular-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/regular/opensans-regular-webfont.woff) format('woff'), url(/assets/lib/open-sans/regular/opensans-regular-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/regular/opensans-regular-webfont.svg#OpenSansRegular) format('svg');
     font-weight: 400;
     font-style: normal
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/italic/opensans-italic-webfont.eot);
-    src: url(../lib/open-sans/italic/opensans-italic-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/italic/opensans-italic-webfont.woff) format('woff'), url(../lib/open-sans/italic/opensans-italic-webfont.ttf) format('truetype'), url(../lib/open-sans/italic/opensans-italic-webfont.svg#OpenSansItalic) format('svg');
+    src: url(/assets/lib/open-sans/italic/opensans-italic-webfont.eot);
+    src: url(/assets/lib/open-sans/italic/opensans-italic-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/italic/opensans-italic-webfont.woff) format('woff'), url(/assets/lib/open-sans/italic/opensans-italic-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/italic/opensans-italic-webfont.svg#OpenSansItalic) format('svg');
     font-weight: 400;
     font-style: italic
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/semibold/opensans-semibold-webfont.eot);
-    src: url(../lib/open-sans/semibold/opensans-semibold-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/semibold/opensans-semibold-webfont.woff) format('woff'), url(../lib/open-sans/semibold/opensans-semibold-webfont.ttf) format('truetype'), url(../lib/open-sans/semibold/opensans-semibold-webfont.svg#OpenSansSemibold) format('svg');
+    src: url(/assets/lib/open-sans/semibold/opensans-semibold-webfont.eot);
+    src: url(/assets/lib/open-sans/semibold/opensans-semibold-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/semibold/opensans-semibold-webfont.woff) format('woff'), url(/assets/lib/open-sans/semibold/opensans-semibold-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/semibold/opensans-semibold-webfont.svg#OpenSansSemibold) format('svg');
     font-weight: 600;
     font-style: normal
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.eot);
-    src: url(../lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.woff) format('woff'), url(../lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.ttf) format('truetype'), url(../lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.svg#OpenSansSemiboldItalic) format('svg');
+    src: url(/assets/lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.eot);
+    src: url(/assets/lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.woff) format('woff'), url(/assets/lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/semibold-italic/opensans-semibold-italic-webfont.svg#OpenSansSemiboldItalic) format('svg');
     font-weight: 600;
     font-style: italic
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/bold/opensans-bold-webfont.eot);
-    src: url(../lib/open-sans/bold/opensans-bold-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/bold/opensans-bold-webfont.woff) format('woff'), url(../lib/open-sans/bold/opensans-bold-webfont.ttf) format('truetype'), url(../lib/open-sans/bold/opensans-bold-webfont.svg#OpenSansBold) format('svg');
+    src: url(/assets/lib/open-sans/bold/opensans-bold-webfont.eot);
+    src: url(/assets/lib/open-sans/bold/opensans-bold-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/bold/opensans-bold-webfont.woff) format('woff'), url(/assets/lib/open-sans/bold/opensans-bold-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/bold/opensans-bold-webfont.svg#OpenSansBold) format('svg');
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/bold-italic/opensans-bold-italic-webfont.eot);
-    src: url(../lib/open-sans/bold-italic/opensans-bold-italic-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/bold-italic/opensans-bold-italic-webfont.woff) format('woff'), url(../lib/open-sans/bold-italic/opensans-bold-italic-webfont.ttf) format('truetype'), url(../lib/open-sans/bold-italic/opensans-bold-italic-webfont.svg#OpenSansItalic) format('svg');
+    src: url(/assets/lib/open-sans/bold-italic/opensans-bold-italic-webfont.eot);
+    src: url(/assets/lib/open-sans/bold-italic/opensans-bold-italic-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/bold-italic/opensans-bold-italic-webfont.woff) format('woff'), url(/assets/lib/open-sans/bold-italic/opensans-bold-italic-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/bold-italic/opensans-bold-italic-webfont.svg#OpenSansItalic) format('svg');
     font-weight: 700;
     font-style: italic
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/extrabold/opensans-extrabold-webfont.eot);
-    src: url(../lib/open-sans/extrabold/opensans-extrabold-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/extrabold/opensans-extrabold-webfont.woff) format('woff'), url(../lib/open-sans/extrabold/opensans-extrabold-webfont.ttf) format('truetype'), url(../lib/open-sans/extrabold/opensans-extrabold-webfont.svg#OpenSansExtrabold) format('svg');
+    src: url(/assets/lib/open-sans/extrabold/opensans-extrabold-webfont.eot);
+    src: url(/assets/lib/open-sans/extrabold/opensans-extrabold-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/extrabold/opensans-extrabold-webfont.woff) format('woff'), url(/assets/lib/open-sans/extrabold/opensans-extrabold-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/extrabold/opensans-extrabold-webfont.svg#OpenSansExtrabold) format('svg');
     font-weight: 800;
     font-style: normal
 }
 
 @font-face {
     font-family: 'Open Sans';
-    src: url(../lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.eot);
-    src: url(../lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.eot?#iefix) format('embedded-opentype'), url(../lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.woff) format('woff'), url(../lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.ttf) format('truetype'), url(../lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.svg#OpenSansExtraboldItalic) format('svg');
+    src: url(/assets/lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.eot);
+    src: url(/assets/lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.eot?#iefix) format('embedded-opentype'), url(/assets/lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.woff) format('woff'), url(/assets/lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.ttf) format('truetype'), url(/assets/lib/open-sans/extrabold-italic/opensans-extrabold-italic-webfont.svg#OpenSansExtraboldItalic) format('svg');
     font-weight: 800;
     font-style: italic
 }
@@ -7377,7 +7374,7 @@ button:focus {
     line-height: 80px;
     height: 80px;
     width: 100px;
-    background-image: url(../img/logo.png);
+    background-image: url(/assets/img/logo.png);
     background-repeat: no-repeat;
     background-position: center center;
     margin-right: 20px;
@@ -7401,7 +7398,7 @@ button:focus {
     margin-left: 0;
     margin-right: 10px;
     width: 180px;
-    background-image: url(../img/logo-full.png)
+    background-image: url(/assets/img/logo-full.png)
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -8191,7 +8188,7 @@ button:focus {
 
 @media (min-width: 768px) {
     .am-left-sidebar .sidebar-elements > li > ul.visible {
-        display: table!important;
+        display: table !important;
     }
 
     .am-left-sidebar .sidebar-elements > li > ul.hide {
@@ -8371,7 +8368,7 @@ button:focus {
     }
 
     .am-left-sidebar .am-logo {
-        background: url(../img/logo-full.png) 15px center no-repeat #393838;
+        background: url(/assets/img/logo-full.png) 15px center no-repeat #393838;
         height: 70px;
         border-bottom: 1px solid #353434;
         display: block
@@ -8380,7 +8377,7 @@ button:focus {
 
 @media (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2),(-webkit-min-device-pixel-ratio: 2),(-o-min-device-pixel-ratio: 2/1),(min-resolution: 192dpi) {
     .am-left-sidebar .am-logo {
-        background-image: url(../img/logo-full-retina.png);
+        background-image: url(/assets/img/logo-full-retina.png);
         background-size: 150px 39px
     }
 }
@@ -9971,7 +9968,7 @@ button:focus {
 }
 
 .gritter-item-wrapper {
-    background: url(../lib/jquery.gritter/images/gritter-bg.png);
+    background: url(/assets/lib/jquery.gritter/images/gritter-bg.png);
     box-shadow: 0 0 4px rgba(0, 0, 0, .2)
 }
 
@@ -11230,7 +11227,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 .am-error-404 .error-container .error-image {
     display: inline-block;
-    background: url(../img/404-img.png) right center no-repeat;
+    background: url(/assets/img/404-img.png) right center no-repeat;
     background-size: 387px 292px;
     width: 100%;
     max-width: 587px;
@@ -11244,7 +11241,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 @media (-webkit-min-device-pixel-ratio: 2),(-o-min-device-pixel-ratio: 2/1),(min-resolution: 192dpi) {
     .am-error-404 .error-container .error-image {
-        background-image: url(../img/404-img-2x.png)
+        background-image: url(/assets/img/404-img-2x.png)
     }
 }
 
@@ -15650,11 +15647,15 @@ form.dropzone .note {
 }
 
 .gritter-main-wrapper .alert {
-    line-height: 1.5!important;
+    line-height: 1.5 !important;
     padding: 0;
     border: none;
     border-radius: 0;
     margin-bottom: 10px;
+}
+
+.flash-message-display .alert {
+    display: none;
 }
 
 table.dataTable {
@@ -17106,4 +17107,17 @@ div.dataTables_wrapper div.dataTables_length label select {
     .lg-mb-0 {
         margin-bottom: 0 !important
     }
+}
+
+.flotTip {
+    padding: 3px 5px;
+    background-color: #000;
+    box-shadow: 1.5px 1.5px #1e1e1e;
+    z-index: 100;
+    color: #fff;
+    opacity: .8;
+    filter: alpha(opacity=70);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }

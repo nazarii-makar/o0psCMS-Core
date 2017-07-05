@@ -15,6 +15,9 @@ use Zend\InputFilter\Factory as InputFactory;
  */
 class UserRepository extends EntityRepository
 {
+    /**
+     * @param int $number
+     */
     public function youCustomDQLFunction($number = 30)
     {
 

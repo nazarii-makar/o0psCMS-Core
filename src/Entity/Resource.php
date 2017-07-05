@@ -41,7 +41,8 @@ class Resource
     /**
      * Set name
      *
-     * @param  string   $name
+     * @param  string $name
+     *
      * @return Resource
      */
     public function setName($name)

@@ -1,0 +1,34 @@
+<?php if ($this->privileges === false) $this->privileges = [] ?>
+<div class="main-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="widget widget-fullwidth widget-small">
+                <div class="widget-head">
+                    <div class="title">Privileges</div>
+                </div>
+                <table id="table1" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Resource</th>
+                        <th>Role</th>
+                        <th>Permission</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->privileges as $privilege) : ?>
+                        <tr class="odd gradeX">
+                            <td><?= $privilege->getId() ?></td>
+                            <td><?= $privilege->getName() ?></td>
+                            <td><?= $privilege->getResource()->getName() ?></td>
+                            <td><?= $privilege->getRole()->getName() ?></td>
+                            <td><?= $privilege->getPermissionAllow() ? 'allow' : 'disallow' ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

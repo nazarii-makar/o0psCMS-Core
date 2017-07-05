@@ -2,55 +2,55 @@
 
 $form = $this->form;
 
-$form->setAttributes(array(
+$form->setAttributes([
     'data-parsley-validate' => '',
-    'novalidate' => '',
-    'class' => 'form-horizontal'
-));
+    'novalidate'            => '',
+    'class'                 => 'form-horizontal',
+]);
 
-$form->get('username')->setAttributes(array(
-    'class' => 'form-control',
-    'data-parsley-trigger' => 'change',
+$form->get('username')->setAttributes([
+    'class'                                 => 'form-control',
+    'data-parsley-trigger'                  => 'change',
     'data-parsley-errors-messages-disabled' => 'true',
-    'data-parsley-class-handler' => '#username-handler',
-    'autocomplete' => 'off',
-    'placeholder' => $this->translate('Username')
-));
+    'data-parsley-class-handler'            => '#username-handler',
+    'autocomplete'                          => 'off',
+    'placeholder'                           => $this->translate('Username'),
+]);
 
 
-$form->get('email')->setAttributes(array(
-    'class' => 'form-control',
-    'data-parsley-trigger' => 'change',
+$form->get('email')->setAttributes([
+    'class'                                 => 'form-control',
+    'data-parsley-trigger'                  => 'change',
     'data-parsley-errors-messages-disabled' => 'true',
-    'data-parsley-class-handler' => '#email-handler',
-    'autocomplete' => 'off',
-    'placeholder' => $this->translate('Your Email')
-));
+    'data-parsley-class-handler'            => '#email-handler',
+    'autocomplete'                          => 'off',
+    'placeholder'                           => $this->translate('Your Email'),
+]);
 
-$form->get('password')->setAttributes(array(
-    'id' => 'password',
-    'class' => 'form-control',
-    'data-parsley-trigger' => 'change',
+$form->get('password')->setAttributes([
+    'id'                                    => 'password',
+    'class'                                 => 'form-control',
+    'data-parsley-trigger'                  => 'change',
     'data-parsley-errors-messages-disabled' => 'true',
-    'data-parsley-class-handler' => '#password-handler',
-    'autocomplete' => 'off',
-    'placeholder' => $this->translate('Password')
-));
+    'data-parsley-class-handler'            => '#password-handler',
+    'autocomplete'                          => 'off',
+    'placeholder'                           => $this->translate('Password'),
+]);
 
-$form->get('passwordVerify')->setAttributes(array(
-    'class' => 'form-control',
-    'data-parsley-trigger' => 'change',
+$form->get('passwordVerify')->setAttributes([
+    'class'                                 => 'form-control',
+    'data-parsley-trigger'                  => 'change',
     'data-parsley-errors-messages-disabled' => 'true',
-    'data-parsley-class-handler' => '#confirm-handler',
-    'data-parsley-equalto' => '#password',
-    'autocomplete' => 'off',
-    'placeholder' => $this->translate('Confirm Password')
-));
+    'data-parsley-class-handler'            => '#confirm-handler',
+    'data-parsley-equalto'                  => '#password',
+    'autocomplete'                          => 'off',
+    'placeholder'                           => $this->translate('Confirm Password'),
+]);
 
-$form->get('submit')->setAttributes(array(
+$form->get('submit')->setAttributes([
     'class' => 'btn btn-block btn-primary btn-lg',
-    'value' => $this->translate('Sign Up')
-));
+    'value' => $this->translate('Sign Up'),
+]);
 
 $form->prepare();
 ?>
@@ -67,21 +67,7 @@ $form->prepare();
                     </div>
                     <div class="panel-body">
                         <?= $this->form()->openTag($form); ?>
-                        <div class="title"><span><?= $this->translate('Sign up with') ?></span></div>
                         <div class="sign-up-form">
-                            <div class="form-group row social-signup">
-                                <div class="col-xs-6">
-                                    <button type="button" class="btn btn-block btn-social btn-facebook"><i
-                                            class="fa fa-facebook icon icon-left"></i> Facebook
-                                    </button>
-                                </div>
-                                <div class="col-xs-6">
-                                    <button type="button" class="btn btn-block btn-social btn-twitter"><i
-                                            class="fa fa-twitter icon icon-left"></i> Twitter
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="title"><span class="title">Or</span></div>
                             <div class="form-group">
                                 <div id="username-handler" class="input-group"><span class="input-group-addon"><i
                                             class="icon s7-user"></i></span>

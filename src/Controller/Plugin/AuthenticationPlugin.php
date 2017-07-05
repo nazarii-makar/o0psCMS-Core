@@ -6,6 +6,10 @@ use Zend\Authentication\Adapter\AdapterInterface as AuthAdapter;
 use Zend\Authentication\AuthenticationService;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
+/**
+ * Class AuthenticationPlugin
+ * @package o0psCore\Controller\Plugin
+ */
 class AuthenticationPlugin extends AbstractPlugin
 {
     /**
@@ -37,6 +41,9 @@ class AuthenticationPlugin extends AbstractPlugin
         return $this->getAuthService()->getIdentity();
     }
 
+    /**
+     *
+     */
     public function clearIdentity()
     {
         $this->getAuthService()->clearIdentity();
@@ -56,11 +63,13 @@ class AuthenticationPlugin extends AbstractPlugin
      * Set authAdapter.
      *
      * @param authAdapter $authAdapter
+     *
      * @return $this
      */
     public function setAuthAdapter(AuthAdapter $authAdapter)
     {
         $this->authAdapter = $authAdapter;
+
         return $this;
     }
 
@@ -78,11 +87,13 @@ class AuthenticationPlugin extends AbstractPlugin
      * Set authService.
      *
      * @param AuthenticationService $authService
+     *
      * @return $this
      */
     public function setAuthService(AuthenticationService $authService)
     {
         $this->authService = $authService;
+
         return $this;
     }
 }

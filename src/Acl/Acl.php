@@ -6,7 +6,12 @@ use Zend\Permissions\Acl\Acl as ZendAcl,
     Zend\Permissions\Acl\Role\GenericRole as Role,
     Zend\Permissions\Acl\Resource\GenericResource as Resource;
 
-class Acl extends ZendAcl {
+/**
+ * Class Acl
+ * @package o0psCore\Acl
+ */
+class Acl extends ZendAcl
+{
     /**
      * Default Role
      */
@@ -16,6 +21,7 @@ class Acl extends ZendAcl {
      * Constructor
      *
      * @param array $config
+     *
      * @throws \Exception
      */
     public function __construct($config)
@@ -37,6 +43,7 @@ class Acl extends ZendAcl {
      * Adds Roles to ACL
      *
      * @param array $roles
+     *
      * @return $this
      */
     protected function _addRoles($roles)
@@ -44,7 +51,7 @@ class Acl extends ZendAcl {
         foreach ($roles as $name => $parent) {
             if (!$this->hasRole($name)) {
                 if (empty($parent)) {
-                    $parent = array();
+                    $parent = [];
                 } else {
                     $parent = explode(',', $parent);
                 }
@@ -60,6 +67,7 @@ class Acl extends ZendAcl {
      * Adds Resources to ACL
      *
      * @param $resources
+     *
      * @return $this
      * @throws \Exception
      */

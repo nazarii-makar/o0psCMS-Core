@@ -10,18 +10,49 @@ use o0psCore\Options\ModuleOptions;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
+/**
+ * Class UserFormFactory
+ * @package o0psCore\Factory\Service
+ */
 class UserFormFactory implements FactoryInterface
 {
 
-    const NAME_LOGIN                    = 'login';
-    const NAME_SIGNUP                   = 'signUp';
-    const NAME_EDITPROFILE              = 'editProfile';
-    const NAME_CHANGEPASSWORD           = 'changePassword';
-    const NAME_FORGOTPASSWORD            = 'forgotPassword';
-    const NAME_CHANGEEMAIL              = 'changeEmail';
-    const NAME_CHANGESECURITYQUESTION   = 'changeSecurityQuestion';
-    const NAME_CREATEUSER               = 'createUser';
-    const NAME_EDITUSER                 = 'editUser';
+    /**
+     *
+     */
+    const NAME_LOGIN                  = 'login';
+    /**
+     *
+     */
+    const NAME_SIGNUP                 = 'signUp';
+    /**
+     *
+     */
+    const NAME_EDITPROFILE            = 'editProfile';
+    /**
+     *
+     */
+    const NAME_CHANGEPASSWORD         = 'changePassword';
+    /**
+     *
+     */
+    const NAME_FORGOTPASSWORD         = 'forgotPassword';
+    /**
+     *
+     */
+    const NAME_CHANGEEMAIL            = 'changeEmail';
+    /**
+     *
+     */
+    const NAME_CHANGESECURITYQUESTION = 'changeSecurityQuestion';
+    /**
+     *
+     */
+    const NAME_CREATEUSER = 'createUser';
+    /**
+     *
+     */
+    const NAME_EDITUSER = 'editUser';
 
     /**
      * @var \Zend\Form\Form
@@ -43,28 +74,43 @@ class UserFormFactory implements FactoryInterface
      */
     protected $translatorHelper;
 
+    /**
+     * @param ContainerInterface $container
+     * @param string             $requestedName
+     * @param array|null         $options
+     *
+     * @return $this
+     */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return $this->setOptions($container->get('o0psCore_module_options'))
-            ->setTranslatorHelper($container->get('MvcTranslator'))
-            ->setEntityManager($container->get('Doctrine\ORM\EntityManager'));
+                    ->setTranslatorHelper($container->get('MvcTranslator'))
+                    ->setEntityManager($container->get('Doctrine\ORM\EntityManager'));
     }
 
+    /**
+     * @param ServiceLocatorInterface $container
+     * @param null                    $name
+     * @param null                    $requestedName
+     *
+     * @return mixed
+     */
     public function createService(ServiceLocatorInterface $container, $name = null, $requestedName = null)
     {
         return $this($container, $requestedName, []);
     }
 
     /**
-     * @param $userEntity
+     * @param        $userEntity
      * @param string $formName
+     *
      * @return \Zend\Form\Form
      */
     public function createUserForm($userEntity, $formName = self::NAME_LOGIN)
     {
         $entityManager = $this->getEntityManager();
-        $builder = new DoctrineAnnotationBuilder($entityManager);
-        $this->form = $builder->createForm($userEntity);
+        $builder       = new DoctrineAnnotationBuilder($entityManager);
+        $this->form    = $builder->createForm($userEntity);
         $this->form->setHydrator(new DoctrineHydrator($entityManager));
         $this->form->setAttribute('method', 'post');
 
@@ -75,20 +121,20 @@ class UserFormFactory implements FactoryInterface
                 $this->addLoginFields();
                 $this->addLoginFilters();
                 $this->form->setAttributes([
-                    'name' => 'login'
+                    'name' => 'login',
                 ]);
                 break;
             case self::NAME_SIGNUP:
                 $this->addSignUpFields();
                 $this->addSignUpFilters();
                 $this->form->setAttributes([
-                    'name' => 'register'
+                    'name' => 'register',
                 ]);
                 break;
 
             case self::NAME_EDITPROFILE:
                 $this->form->setAttributes([
-                    'name' => 'edit-profile'
+                    'name' => 'edit-profile',
                 ]);
                 break;
 
@@ -96,7 +142,7 @@ class UserFormFactory implements FactoryInterface
                 $this->addChangePasswordFields();
                 $this->addChangePasswordFilters();
                 $this->form->setAttributes([
-                    'name' => 'change-password'
+                    'name' => 'change-password',
                 ]);
                 break;
 
@@ -104,7 +150,7 @@ class UserFormFactory implements FactoryInterface
                 $this->addResetPasswordFields();
                 $this->addResetPasswordFilters();
                 $this->form->setAttributes([
-                    'name' => 'reset-password'
+                    'name' => 'reset-password',
                 ]);
                 break;
 
@@ -112,7 +158,7 @@ class UserFormFactory implements FactoryInterface
                 $this->addChangeEmailFields();
                 $this->addChangeEmailFilters();
                 $this->form->setAttributes([
-                    'name' => 'change-email'
+                    'name' => 'change-email',
                 ]);
                 break;
 
@@ -120,7 +166,7 @@ class UserFormFactory implements FactoryInterface
                 $this->addChangeSecurityQuestionFields();
                 $this->addChangeSecurityQuestionFilters();
                 $this->form->setAttributes([
-                    'name' => 'change-security-question'
+                    'name' => 'change-security-question',
                 ]);
                 break;
 
@@ -128,13 +174,13 @@ class UserFormFactory implements FactoryInterface
                 $this->addCreateUserFields();
                 $this->addCreateUserFilters();
                 $this->form->setAttributes([
-                    'name' => 'create-user'
+                    'name' => 'create-user',
                 ]);
                 break;
 
             case self::NAME_EDITUSER:
                 $this->form->setAttributes([
-                    'name' => 'edit-user'
+                    'name' => 'edit-user',
                 ]);
                 break;
 
@@ -155,18 +201,18 @@ class UserFormFactory implements FactoryInterface
     protected function addCommonFields()
     {
         $this->form->add([
-            'name' => 'csrf',
-            'type' => 'Zend\Form\Element\Csrf',
+            'name'    => 'csrf',
+            'type'    => 'Zend\Form\Element\Csrf',
             'options' => [
                 'csrf_options' => [
-                    'timeout' => 600
-                ]
-            ]
+                    'timeout' => 600,
+                ],
+            ],
         ]);
 
         $this->form->add([
-            'name' => 'submit',
-            'type' => 'Zend\Form\Element\Submit',
+            'name'       => 'submit',
+            'type'       => 'Zend\Form\Element\Submit',
             'attributes' => [
                 'type' => 'submit',
             ],
@@ -181,17 +227,17 @@ class UserFormFactory implements FactoryInterface
     protected function addLoginFields()
     {
         $this->form->add([
-            'name' => 'usernameOrEmail',
-            'type' => 'Zend\Form\Element\Text',
+            'name'       => 'usernameOrEmail',
+            'type'       => 'Zend\Form\Element\Text',
             'attributes' => [
-                'type' => 'text',
+                'type'     => 'text',
                 'required' => 'required',
             ],
         ]);
 
         $this->form->add([
-            'name' => 'rememberme',
-            'type' => 'Zend\Form\Element\Checkbox',
+            'name'    => 'rememberme',
+            'type'    => 'Zend\Form\Element\Checkbox',
             'options' => [
                 'label' => $this->getTranslatorHelper()->translate('Remember me?'),
             ],
@@ -206,11 +252,11 @@ class UserFormFactory implements FactoryInterface
     protected function addSignUpFields()
     {
         $this->form->add([
-            'name' => 'passwordVerify',
-            'type' => 'Zend\Form\Element\Password',
+            'name'       => 'passwordVerify',
+            'type'       => 'Zend\Form\Element\Password',
             'attributes' => [
                 'required' => true,
-                'type' => 'password',
+                'type'     => 'password',
             ],
         ]);
     }
@@ -223,28 +269,28 @@ class UserFormFactory implements FactoryInterface
     protected function addChangePasswordFields()
     {
         $this->form->add([
-            'name' => 'newPassword',
-            'type' => 'Zend\Form\Element\Password',
+            'name'       => 'newPassword',
+            'type'       => 'Zend\Form\Element\Password',
             'attributes' => [
-                'type' => 'password',
+                'type'     => 'password',
                 'required' => 'true',
             ],
         ]);
 
         $this->form->add([
-            'name' => 'newPasswordVerify',
-            'type' => 'Zend\Form\Element\Password',
+            'name'       => 'newPasswordVerify',
+            'type'       => 'Zend\Form\Element\Password',
             'attributes' => [
-                'type' => 'password',
+                'type'     => 'password',
                 'required' => 'true',
             ],
         ]);
 
         $this->form->add([
-            'name' => 'currentPassword',
-            'type' => 'Zend\Form\Element\Password',
+            'name'       => 'currentPassword',
+            'type'       => 'Zend\Form\Element\Password',
             'attributes' => [
-                'type' => 'password',
+                'type'     => 'password',
                 'required' => 'true',
             ],
         ]);
@@ -267,28 +313,28 @@ class UserFormFactory implements FactoryInterface
     protected function addChangeEmailFields()
     {
         $this->form->add([
-            'name' => 'newEmail',
-            'type' => 'Zend\Form\Element\Email',
+            'name'       => 'newEmail',
+            'type'       => 'Zend\Form\Element\Email',
             'attributes' => [
-                'type' => 'email',
+                'type'     => 'email',
                 'required' => 'true',
             ],
         ]);
 
         $this->form->add([
-            'name' => 'newEmailVerify',
-            'type' => 'Zend\Form\Element\Email',
+            'name'       => 'newEmailVerify',
+            'type'       => 'Zend\Form\Element\Email',
             'attributes' => [
-                'type' => 'email',
+                'type'     => 'email',
                 'required' => 'true',
             ],
         ]);
 
         $this->form->add([
-            'name' => 'currentPassword',
-            'type' => 'Zend\Form\Element\Password',
+            'name'       => 'currentPassword',
+            'type'       => 'Zend\Form\Element\Password',
             'attributes' => [
-                'type' => 'password',
+                'type'     => 'password',
                 'required' => 'true',
             ],
         ]);
@@ -302,10 +348,10 @@ class UserFormFactory implements FactoryInterface
     protected function addChangeSecurityQuestionFields()
     {
         $this->form->add([
-            'name' => 'currentPassword',
-            'type' => 'Zend\Form\Element\Password',
+            'name'       => 'currentPassword',
+            'type'       => 'Zend\Form\Element\Password',
             'attributes' => [
-                'type' => 'password',
+                'type'     => 'password',
                 'required' => 'true',
             ],
         ]);
@@ -319,11 +365,11 @@ class UserFormFactory implements FactoryInterface
     protected function addCreateUserFields()
     {
         $this->form->add([
-            'name' => 'passwordVerify',
-            'type' => 'Zend\Form\Element\Password',
+            'name'       => 'passwordVerify',
+            'type'       => 'Zend\Form\Element\Password',
             'attributes' => [
                 'required' => true,
-                'type' => 'password',
+                'type'     => 'password',
             ],
         ]);
     }
@@ -336,38 +382,38 @@ class UserFormFactory implements FactoryInterface
     protected function addLoginFilters()
     {
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'usernameOrEmail',
-            'required' => true,
-            'filters' => [
+            'name'       => 'usernameOrEmail',
+            'required'   => true,
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name'    => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
-                        'min' => 6,
+                        'min'      => 6,
                     ],
                 ],
-            ]
+            ],
         ]));
 
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'rememberme',
-            'required' => true,
-            'filters' => [
+            'name'       => 'rememberme',
+            'required'   => true,
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'InArray',
+                    'name'    => 'InArray',
                     'options' => [
                         'haystack' => ['0', '1'],
                     ],
                 ],
-            ]
+            ],
         ]));
     }
 
@@ -382,8 +428,8 @@ class UserFormFactory implements FactoryInterface
         $this->form->getInputFilter()->get('username')->getValidatorChain()->attach(
             new NoObjectExistsValidator([
                 'object_repository' => $entityManager->getRepository('o0psCore\Entity\User'),
-                'fields' => ['username'],
-                'messages' => [
+                'fields'            => ['username'],
+                'messages'          => [
                     'objectFound' => $this->getTranslatorHelper()->translate('This username is already taken'),
                 ],
             ])
@@ -392,21 +438,21 @@ class UserFormFactory implements FactoryInterface
         $this->form->getInputFilter()->get('email')->getValidatorChain()->attach(
             new NoObjectExistsValidator([
                 'object_repository' => $entityManager->getRepository('o0psCore\Entity\User'),
-                'fields' => ['email'],
-                'messages' => [
+                'fields'            => ['email'],
+                'messages'          => [
                     'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists'),
                 ],
             ])
         );
 
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'passwordVerify',
-            'required' => true,
+            'name'       => 'passwordVerify',
+            'required'   => true,
             'validators' => [
                 [
-                    'name' => 'Identical',
+                    'name'    => 'Identical',
                     'options' => [
-                        'token' => 'password'
+                        'token' => 'password',
                     ],
                 ],
             ],
@@ -422,64 +468,64 @@ class UserFormFactory implements FactoryInterface
     {
 
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'newPassword',
-            'filters' => [
+            'name'       => 'newPassword',
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name'    => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
-                        'min' => 6,
-                        'max' => 20,
+                        'min'      => 6,
+                        'max'      => 20,
                     ],
                 ],
-            ]
+            ],
         ]));
 
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'newPasswordVerify',
-            'required' => true,
-            'filters' => [
+            'name'       => 'newPasswordVerify',
+            'required'   => true,
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name'    => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
-                        'min' => 6,
-                        'max' => 20,
+                        'min'      => 6,
+                        'max'      => 20,
                     ],
                 ],
                 [
-                    'name' => 'Identical',
+                    'name'    => 'Identical',
                     'options' => [
                         'token' => 'newPassword',
                     ],
                 ],
-            ]
+            ],
         ]));
 
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'currentPassword',
-            'filters' => [
+            'name'       => 'currentPassword',
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name'    => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
-                        'min' => 6,
-                        'max' => 20,
+                        'min'      => 6,
+                        'max'      => 20,
                     ],
                 ],
-            ]
+            ],
         ]));
     }
 
@@ -500,23 +546,24 @@ class UserFormFactory implements FactoryInterface
     protected function addChangeEmailFilters()
     {
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'newEmail',
-            'required' => true,
-            'filters' => [
+            'name'       => 'newEmail',
+            'required'   => true,
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'EmailAddress'
+                    'name' => 'EmailAddress',
                 ],
                 [
-                    'name' => 'DoctrineModule\Validator\NoObjectExists',
+                    'name'    => 'DoctrineModule\Validator\NoObjectExists',
                     'options' => [
                         'object_repository' => $this->getEntityManager()->getRepository('o0psCore\Entity\User'),
-                        'fields' => ['email'],
-                        'messages' => [
-                            'objectFound' => $this->getTranslatorHelper()->translate('An user with this email already exists'),
+                        'fields'            => ['email'],
+                        'messages'          => [
+                            'objectFound' => $this->getTranslatorHelper()
+                                                  ->translate('An user with this email already exists'),
                         ],
                     ],
                 ],
@@ -524,18 +571,18 @@ class UserFormFactory implements FactoryInterface
         ]));
 
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'newEmailVerify',
-            'required' => true,
-            'filters' => [
+            'name'       => 'newEmailVerify',
+            'required'   => true,
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'EmailAddress'
+                    'name' => 'EmailAddress',
                 ],
                 [
-                    'name' => 'Identical',
+                    'name'    => 'Identical',
                     'options' => [
                         'token' => 'newEmail',
                     ],
@@ -544,21 +591,21 @@ class UserFormFactory implements FactoryInterface
         ]));
 
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'currentPassword',
-            'filters' => [
+            'name'       => 'currentPassword',
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name'    => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
-                        'min' => 6,
-                        'max' => 20,
+                        'min'      => 6,
+                        'max'      => 20,
                     ],
                 ],
-            ]
+            ],
         ]));
     }
 
@@ -570,21 +617,21 @@ class UserFormFactory implements FactoryInterface
     protected function addChangeSecurityQuestionFilters()
     {
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'currentPassword',
-            'filters' => [
+            'name'       => 'currentPassword',
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name'    => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
-                        'min' => 6,
-                        'max' => 20,
+                        'min'      => 6,
+                        'max'      => 20,
                     ],
                 ],
-            ]
+            ],
         ]));
     }
 
@@ -596,37 +643,39 @@ class UserFormFactory implements FactoryInterface
     protected function addCreateUserFilters()
     {
         $this->form->getInputFilter()->add($this->form->getInputFilter()->getFactory()->createInput([
-            'name' => 'passwordVerify',
-            'filters' => [
+            'name'       => 'passwordVerify',
+            'filters'    => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name'    => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
-                        'min' => 6,
-                        'max' => 20,
+                        'min'      => 6,
+                        'max'      => 20,
                     ],
                 ],
                 [
-                    'name' => 'Identical',
+                    'name'    => 'Identical',
                     'options' => [
                         'token' => 'password',
                     ],
                 ],
-            ]
+            ],
         ]));
     }
 
     /**
      * @param $options
+     *
      * @return $this
      */
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -642,11 +691,13 @@ class UserFormFactory implements FactoryInterface
 
     /**
      * @param $entityManager
+     *
      * @return $this
      */
     public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
+
         return $this;
     }
 
@@ -662,11 +713,13 @@ class UserFormFactory implements FactoryInterface
 
     /**
      * @param $translatorHelper
+     *
      * @return $this
      */
     public function setTranslatorHelper($translatorHelper)
     {
         $this->translatorHelper = $translatorHelper;
+
         return $this;
     }
 
